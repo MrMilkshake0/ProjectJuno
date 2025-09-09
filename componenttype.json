@@ -1,0 +1,552 @@
+{
+"user_id": {
+"component": "Input",
+"notes": "Read-only or hidden if auto-generated; plain text otherwise."
+},
+"social_footprints.social_links.facebook": {
+"component": "Input",
+"notes": "URL validation; prepend https:// if missing."
+},
+"social_footprints.social_links.instagram": {
+"component": "Input",
+"notes": "Username or URL; optional."
+},
+"social_footprints.social_links.email": {
+"component": "Input[type=email]",
+"notes": "Email validation."
+},
+"social_footprints.social_links.phone": {
+"component": "Input",
+"notes": "Phone mask; E.164 validation if possible."
+},
+"social_footprints.close_friend_count": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; use Input[type=number] with min=0 and step=1."
+},
+
+"demographics.age": {
+"component": "Slider",
+"notes": "Integer slider, bounded 18–99; show value."
+},
+"demographics.gender": {
+"component": "Select",
+"notes": "Enum: male, female, other. Provide 'Other' free-text when selected."
+},
+"demographics.location.latitude": {
+"component": "NumberInput",
+"notes": "Float −90 to 90; step 0.0001."
+},
+"demographics.location.longitude": {
+"component": "NumberInput",
+"notes": "Float −180 to 180; step 0.0001."
+},
+"demographics.location.city": {
+"component": "Input",
+"notes": "Free text."
+},
+"demographics.location.country": {
+"component": "Combobox",
+"notes": "Country list with search; required."
+},
+"demographics.education_level": {
+"component": "Select",
+"notes": "Enum with 'Other' and 'Prefer not to say'; reveal free-text when 'Other'."
+},
+"demographics.occupation": {
+"component": "Input",
+"notes": "Free text."
+},
+"demographics.income_bracket.min": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; currency adornment."
+},
+"demographics.income_bracket.max": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; must be ≥ min; currency adornment."
+},
+"demographics.ethnicity": {
+"component": "Select",
+"notes": "Enum with 'Another / self-described' and 'Prefer not to say'; free-text when self-described."
+},
+"demographics.languages_spoken": {
+"component": "MultiSelect",
+"notes": "Command + Checkbox list + Badge chips; unique items; includes 'Other' with chip add."
+},
+
+"partner_preferences.demographics.age_range.min": {
+"component": "Slider (range)",
+"notes": "Part of a dual-thumb range 18–99; writes to min."
+},
+"partner_preferences.demographics.age_range.max": {
+"component": "Slider (range)",
+"notes": "Part of a dual-thumb range 18–99; writes to max; must be ≥ min."
+},
+"partner_preferences.demographics.age_range.importance": {
+"component": "Slider",
+"notes": "0–1 (0 not important, 1 deal-breaker)."
+},
+"partner_preferences.demographics.genders": {
+"component": "Checkbox Group",
+"notes": "Multi-select enum: male, female, other; unique items."
+},
+"partner_preferences.demographics.genders.importance": {
+"component": "Slider",
+"notes": "0–1 importance for selected genders."
+},
+
+"partner_preferences.psychometrics.big_five.openness.min": {
+"component": "Slider (range)",
+"notes": "0–1 desired min; paired with max as dual range."
+},
+"partner_preferences.psychometrics.big_five.openness.max": {
+"component": "Slider (range)",
+"notes": "0–1 desired max; paired with min."
+},
+"partner_preferences.psychometrics.big_five.openness.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+"partner_preferences.psychometrics.big_five.conscientiousness.min": {
+"component": "Slider (range)",
+"notes": "0–1 desired min."
+},
+"partner_preferences.psychometrics.big_five.conscientiousness.max": {
+"component": "Slider (range)",
+"notes": "0–1 desired max."
+},
+"partner_preferences.psychometrics.big_five.conscientiousness.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+"partner_preferences.psychometrics.big_five.extraversion.min": {
+"component": "Slider (range)",
+"notes": "0–1 desired min."
+},
+"partner_preferences.psychometrics.big_five.extraversion.max": {
+"component": "Slider (range)",
+"notes": "0–1 desired max."
+},
+"partner_preferences.psychometrics.big_five.extraversion.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+"partner_preferences.psychometrics.big_five.agreeableness.min": {
+"component": "Slider (range)",
+"notes": "0–1 desired min."
+},
+"partner_preferences.psychometrics.big_five.agreeableness.max": {
+"component": "Slider (range)",
+"notes": "0–1 desired max."
+},
+"partner_preferences.psychometrics.big_five.agreeableness.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+"partner_preferences.psychometrics.big_five.neuroticism.min": {
+"component": "Slider (range)",
+"notes": "0–1 desired min."
+},
+"partner_preferences.psychometrics.big_five.neuroticism.max": {
+"component": "Slider (range)",
+"notes": "0–1 desired max."
+},
+"partner_preferences.psychometrics.big_five.neuroticism.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"partner_preferences.values_beliefs.desire_children": {
+"component": "Switch",
+"notes": "Boolean toggle."
+},
+"partner_preferences.values_beliefs.desire_children.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+"partner_preferences.values_beliefs.religion": {
+"component": "Select",
+"notes": "Enum with 'other' and 'prefer not to say'; free-text when 'other'."
+},
+"partner_preferences.values_beliefs.religion.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+"partner_preferences.values_beliefs.religious_observance": {
+"component": "Checkbox Group",
+"notes": "Multi-select enum: none, occasional, regular, devout; unique items."
+},
+"partner_preferences.values_beliefs.religious_observance.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+"partner_preferences.values_beliefs.political_ideology": {
+"component": "Checkbox Group",
+"notes": "Multi-select enum with 'other' and 'prefer not to say'; unique items."
+},
+"partner_preferences.values_beliefs.political_ideology.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"partner_preferences.lifestyle.smoking": {
+"component": "Checkbox Group",
+"notes": "Multi-select enum: no, social, occasionally, regular, trying to quit."
+},
+"partner_preferences.lifestyle.smoking.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+"partner_preferences.lifestyle.dietary_preferences": {
+"component": "Checkbox Group",
+"notes": "Multi-select enum with 'other'; show free-text chip when 'other'."
+},
+"partner_preferences.lifestyle.dietary_preferences.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"partner_preferences.physical_preferences.height_range_cm.min": {
+"component": "Slider (range)",
+"notes": "Dual range for cm; sensible bounds 120–220 by UX; writes to min."
+},
+"partner_preferences.physical_preferences.height_range_cm.max": {
+"component": "Slider (range)",
+"notes": "Dual range for cm; writes to max; must be ≥ min."
+},
+"partner_preferences.physical_preferences.height_range_cm.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+"partner_preferences.physical_preferences.body_types": {
+"component": "Checkbox Group",
+"notes": "Multi-select enum: slim, average, athletic, muscular, curvy, plus."
+},
+"partner_preferences.physical_preferences.body_types.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"partner_preferences.communication_style.conflict_resolution": {
+"component": "Select",
+"notes": "Enum: avoidance, compromise, collaboration, accommodation, competition."
+},
+"partner_preferences.communication_style.conflict_resolution.importance": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"psychometrics.big_five.openness.score": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.openness.facets.imagination": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.openness.facets.artisticInterests": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.openness.facets.emotionality": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.openness.facets.adventurousness": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.openness.facets.intellect": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.openness.facets.liberalism": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"psychometrics.big_five.extraversion.score": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.extraversion.facets.friendliness": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.extraversion.facets.gregariousness": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.extraversion.facets.assertiveness": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.extraversion.facets.activityLevel": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.extraversion.facets.excitementSeeking": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.extraversion.facets.cheerfulness": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"psychometrics.big_five.conscientiousness.score": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.conscientiousness.facets.selfEfficacy": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.conscientiousness.facets.orderliness": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.conscientiousness.facets.dutifulness": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.conscientiousness.facets.achievementStriving": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.conscientiousness.facets.selfDiscipline": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.conscientiousness.facets.cautiousness": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"psychometrics.big_five.agreeableness.score": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.agreeableness.facets.trust": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.agreeableness.facets.morality": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.agreeableness.facets.altruism": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.agreeableness.facets.cooperation": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.agreeableness.facets.modesty": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.agreeableness.facets.sympathy": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"psychometrics.big_five.neuroticism.score": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.neuroticism.facets.anxiety": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.neuroticism.facets.angerHostility": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.neuroticism.facets.depression": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.neuroticism.facets.selfConsciousness": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.neuroticism.facets.immoderation": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.big_five.neuroticism.facets.vulnerability": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"psychometrics.attachment_style": {
+"component": "Select",
+"notes": "Enum: secure, anxious, avoidant, fearful-avoidant."
+},
+"psychometrics.love_languages.words_of_affirmation": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.love_languages.acts_of_service": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.love_languages.receiving_gifts": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.love_languages.quality_time": {
+"component": "Slider",
+"notes": "0–1."
+},
+"psychometrics.love_languages.physical_touch": {
+"component": "Slider",
+"notes": "0–1."
+},
+
+"values_beliefs.religion": {
+"component": "Select",
+"notes": "Enum with 'other' and 'prefer not to say'; free-text when 'other'."
+},
+"values_beliefs.religious_observance": {
+"component": "Select",
+"notes": "Enum: none, occasional, regular, devout."
+},
+"values_beliefs.political_ideology": {
+"component": "Select",
+"notes": "Enum with 'other' and 'prefer not to say'; free-text when 'other'."
+},
+"values_beliefs.desire_children": {
+"component": "Switch",
+"notes": "Boolean toggle."
+},
+"values_beliefs.marriage_ideal_timeline_years": {
+"component": "NumberInput",
+"notes": "Integer years; min 0."
+},
+
+"relationship_history.past_relationships": {
+"component": "Repeater",
+"notes": "Composite: Array of item cards each containing fields below; add/remove with validation."
+},
+"relationship_history.past_relationships[].duration_months": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; months."
+},
+"relationship_history.past_relationships[].end_reason": {
+"component": "Textarea",
+"notes": "Short text; optional."
+},
+"relationship_history.past_relationships[].co_parenting": {
+"component": "Switch",
+"notes": "Boolean."
+},
+"relationship_history.desired_relationship_type": {
+"component": "RadioGroup",
+"notes": "Enum: casual, serious, marriage; required."
+},
+"relationship_history.desired_milestones_timeline.engagement_years.min": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; min years."
+},
+"relationship_history.desired_milestones_timeline.engagement_years.max": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; ≥ min."
+},
+"relationship_history.desired_milestones_timeline.children_years.min": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; min years."
+},
+"relationship_history.desired_milestones_timeline.children_years.max": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; ≥ min."
+},
+"relationship_history.relocation_willingness": {
+"component": "Switch",
+"notes": "Boolean."
+},
+
+"lifestyle.fitness.frequency_per_week": {
+"component": "Slider",
+"notes": "Integer 0–14; show value."
+},
+"lifestyle.fitness.activities": {
+"component": "Checkbox Group",
+"notes": "Multi-select enum (includes 'other'); use chip input for custom when 'other'."
+},
+"lifestyle.dietary_preferences": {
+"component": "Checkbox Group",
+"notes": "Multi-select enum with 'other'; chip input for custom."
+},
+"lifestyle.sleep_pattern.bedtime": {
+"component": "Input[type=time]",
+"notes": "HH:MM 24h; native input via shadcn Form + Input."
+},
+"lifestyle.sleep_pattern.wake_time": {
+"component": "Input[type=time]",
+"notes": "HH:MM 24h."
+},
+"lifestyle.travel.trips_per_year": {
+"component": "Slider",
+"notes": "Integer 0–20; show value."
+},
+"lifestyle.travel.favorite_destinations": {
+"component": "TagInput",
+"notes": "Composite (Input + chips) allowing free-text multiple unique entries."
+},
+"lifestyle.hobbies": {
+"component": "TagInput",
+"notes": "Composite (Input + chips); unique items."
+},
+"lifestyle.substance_use.smoking": {
+"component": "Select",
+"notes": "Enum: no, social, occasionally, regular, trying to quit."
+},
+"lifestyle.substance_use.alcohol_use": {
+"component": "Select",
+"notes": "Enum: none, rarely, socially, weekends, most days."
+},
+"lifestyle.substance_use.drugs": {
+"component": "Select",
+"notes": "Enum: none, rarely, socially, weekends, most days."
+},
+"lifestyle.pet_ownership": {
+"component": "Checkbox Group",
+"notes": "Multi-select enum; unique items."
+},
+
+"physical_info.self.height_cm": {
+"component": "NumberInput",
+"notes": "Integer cm; sensible bounds 120–220."
+},
+"physical_info.self.body_type": {
+"component": "Input",
+"notes": "Free text self-description (no enum given)."
+},
+"physical_info.self.style": {
+"component": "Input",
+"notes": "Free text (e.g., streetwear, formal, etc.)."
+},
+"physical_info.body_types": {
+"component": "Select",
+"notes": "Enum: slim, average, athletic, muscular, curvy, plus."
+},
+
+"communication_style.messages_per_day.min": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; part of comfort range."
+},
+"communication_style.messages_per_day.max": {
+"component": "NumberInput",
+"notes": "Integer ≥ 0; must be ≥ min."
+},
+"communication_style.conflict_resolution_style": {
+"component": "Select",
+"notes": "Enum: avoidance, compromise, collaboration, accommodation, competition."
+},
+"communication_style.humor_style": {
+"component": "Select",
+"notes": "Enum: witty, dry, sarcastic, wholesome, slapstick, dark, goofy, none."
+}
+}

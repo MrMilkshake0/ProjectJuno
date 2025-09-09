@@ -1,0 +1,285 @@
+{
+  "user_id": {
+    "type": "string",
+    "description": "Unique user identifier"
+  },
+  "social_footprints": {
+    "social_links": {
+      "type": "object",
+      "properties": {
+        "facebook": { "type": "string" },
+        "instagram": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" }
+      }
+    },
+    "close_friend_count": { "type": "integer", "minimum": 0 }
+  },
+  "demographics": {
+    "age": { "type": "integer", "minimum": 18, "maximum": 99, "required": true },
+    "gender": { "type": "string", "enum": ["male", "female", "other"], "required": true },
+    "location": {
+      "type": "object",
+      "properties": {
+        "latitude":  { "type": "number", "minimum": -90,  "maximum": 90 },
+        "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+        "city": { "type": "string" },
+        "country": { "type": "string", "required": true }
+      }
+    },
+    "education_level": { "type": "string", "enum": ["High school","Vocational/Trade","Associate/Diploma","Bachelor's","Master's","Doctorate","Other","Prefer not to say"] },
+    "occupation": { "type": "string" },
+    "income_bracket": {
+      "type": "object",
+      "properties": {
+        "min": { "type": "integer", "minimum": 0 },
+        "max": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "ethnicity": {
+      "type": "string",
+      "enum": ["East Asian","South Asian","Southeast Asian","Middle Eastern/North African","Black/African","Latine/Hispanic","Indigenous","White/European","Mixed","Another / self-described","Prefer not to say"] 
+    },
+    "languages_spoken": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["English","Spanish","Mandarin","Hindi","Arabic","French","Bengali","Portuguese","Russian","Urdu","Indonesian","German","Japanese","Korean","Italian","Other"] },
+      "uniqueItems": true
+    }
+    },
+  "partner_preferences": {
+    "demographics": {
+      "age_range": {
+        "min": { "type": "integer", "minimum": 18, "maximum": 99 },
+        "max": { "type": "integer", "minimum": 18, "maximum": 99 },
+        "importance": { "type": "number", "minimum": 0, "maximum": 1, "description": "0 = not important, 1 = deal-breaker" },
+        "required": true
+      },
+      "genders": {
+        "type": "array",
+        "items": { "type": "string", "enum": ["male","female","other"] },
+        "uniqueItems": true,
+        "required": true,
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "psychometrics": {
+      "big_five": {
+        "openness":        { "min": 0, "max": 1, "importance": 0.5 },
+        "conscientiousness": { "min": 0, "max": 1, "importance": 0.5 },
+        "extraversion":    { "min": 0, "max": 1, "importance": 0.5 },
+        "agreeableness":   { "min": 0, "max": 1, "importance": 0.5 },
+        "neuroticism":     { "min": 0, "max": 1, "importance": 0.5 }
+      }
+    },
+    "values_beliefs": {
+      "desire_children": {
+        "type": "boolean",
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "religion": { 
+        "type": "string", 
+        "enum": ["agnostic","atheist","buddhist","christian","hindu","jewish","muslim","sikh","spiritual not religious","other","prefer not to say"],
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "religious_observance": {
+        "type": "array",
+        "items": { "type": "string", "enum": ["none","occasional","regular","devout"] },
+        "uniqueItems": true,
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "political_ideology": {
+        "type": "array",
+        "items": { "type": "string", "enum": ["very left","left","center-left","center","center-right","right","very right","prefer not to say","other"] },
+        "uniqueItems": true,
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "lifestyle": {
+      "smoking": {
+        "type": "array",
+        "items": { "type": "string", "enum": ["no","social","occasionally","regular","trying to quit"] },
+        "uniqueItems": true,
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "dietary_preferences": {
+        "type": "array",
+        "items": { "type": "string", "enum": ["no preference","vegetarian","vegan","pescatarian","halal","kosher","low-carb/keto","gluten-free","dairy-free","other"] },
+        "uniqueItems": true,
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "physical_preferences": {
+      "height_range_cm": {
+        "type": "object",
+        "properties": {
+          "min": { "type": "integer", "minimum": 0 },
+          "max": { "type": "integer", "minimum": 0 }
+        },
+        "description": "[min, max] in cm",
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "body_types": {
+        "type": "array",
+        "items": { "type": "string", "enum": ["slim","average","athletic","muscular","curvy","plus"]},
+        "uniqueItems": true,
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "communication_style": {
+      "conflict_resolution": {
+        "type": "string",
+        "enum": ["avoidance","compromise","collaboration","accommodation","competition"],
+        "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  },
+
+  "psychometrics": {
+    "big_five": {
+      "openness": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "facets": {
+          "imagination":       {"id": 1, "type": "number", "minimum": 0, "maximum": 1 },
+          "artisticInterests": {"id": 2, "type": "number", "minimum": 0, "maximum": 1 },
+          "emotionality":      {"id": 3, "type": "number", "minimum": 0, "maximum": 1 },
+          "adventurousness":   {"id": 4, "type": "number", "minimum": 0, "maximum": 1 },
+          "intellect":         {"id": 5, "type": "number", "minimum": 0, "maximum": 1 },
+          "liberalism":        {"id": 6, "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      },
+      "extraversion": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "facets": {
+          "friendliness":     {"id": 1, "type": "number", "minimum": 0, "maximum": 1 },
+          "gregariousness":   {"id": 2, "type": "number", "minimum": 0, "maximum": 1 },
+          "assertiveness":    {"id": 3, "type": "number", "minimum": 0, "maximum": 1 },
+          "activityLevel":    {"id": 4, "type": "number", "minimum": 0, "maximum": 1 },
+          "excitementSeeking":{"id": 5, "type": "number", "minimum": 0, "maximum": 1 },
+          "cheerfulness":     {"id": 6, "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      },
+      "conscientiousness": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "facets": {
+          "selfEfficacy":     {"id": 1, "type": "number", "minimum": 0, "maximum": 1 },
+          "orderliness":      {"id": 2, "type": "number", "minimum": 0, "maximum": 1 },
+          "dutifulness":      {"id": 3, "type": "number", "minimum": 0, "maximum": 1 },
+          "achievementStriving": {"id": 4, "type": "number", "minimum": 0, "maximum": 1 },
+          "selfDiscipline":   {"id": 5, "type": "number", "minimum": 0, "maximum": 1 },
+          "cautiousness":     {"id": 6, "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      },
+      "agreeableness": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "facets": {
+          "trust":            {"id": 1, "type": "number", "minimum": 0, "maximum": 1 },
+          "morality":         {"id": 2, "type": "number", "minimum": 0, "maximum": 1 },
+          "altruism":         {"id": 3, "type": "number", "minimum": 0, "maximum": 1 },
+          "cooperation":      {"id": 4, "type": "number", "minimum": 0, "maximum": 1 },
+          "modesty":          {"id": 5, "type": "number", "minimum": 0, "maximum": 1 },
+          "sympathy":         {"id": 6, "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      },
+      "neuroticism": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "facets": {
+          "anxiety":          {"id": 1, "type": "number", "minimum": 0, "maximum": 1 },
+          "angerHostility":   {"id": 2, "type": "number", "minimum": 0, "maximum": 1 },
+          "depression":       {"id": 3, "type": "number", "minimum": 0, "maximum": 1 },
+          "selfConsciousness":{"id": 4, "type": "number", "minimum": 0, "maximum": 1 },
+          "immoderation":     {"id": 5, "type": "number", "minimum": 0, "maximum": 1 },
+          "vulnerability":    {"id": 6, "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "attachment_style": { "type": "string", "enum": ["secure", "anxious", "avoidant", "fearful-avoidant"] },
+    "love_languages": {
+      "words_of_affirmation": {"type": "number", "minimum": 0, "maximum": 1 },
+      "acts_of_service":      {"type": "number", "minimum": 0, "maximum": 1 },
+      "receiving_gifts":      {"type": "number", "minimum": 0, "maximum": 1 },
+      "quality_time":         {"type": "number", "minimum": 0, "maximum": 1 },
+      "physical_touch":       {"type": "number", "minimum": 0, "maximum": 1 }
+    }
+  },
+  "values_beliefs": {
+    "religion": { 
+      "type": "string", 
+      "enum": ["agnostic","atheist","buddhist","christian","hindu","jewish","muslim","sikh","spiritual not religious","other","prefer not to say"]
+    },
+    "religious_observance": { "type": "string", "enum": ["none", "occasional", "regular", "devout"] },
+    "political_ideology": { "type": "string", "enum": ["very left","left","center-left","center","center-right","right","very right","prefer not to say","other"] },
+    "desire_children": { "type": "boolean" },
+    "marriage_ideal_timeline_years": { "type": "integer" }
+  },
+  "relationship_history": {
+    "past_relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "duration_months": { "type": "integer" },
+          "end_reason": { "type": "string" },
+          "co_parenting": { "type": "boolean" }
+        }
+      }
+    },
+    "desired_relationship_type": { "type": "string", "enum": ["casual", "serious", "marriage"], "required": true },
+    "desired_milestones_timeline": {
+      "engagement_years": { 
+        "type": "object",
+        "properties": {
+          "min": { "type": "integer" },
+          "max": { "type": "integer" }
+        }
+      },
+      "children_years": {
+        "type": "object",
+        "properties": {
+          "min": { "type": "integer" },
+          "max": { "type": "integer" }
+        }
+      }
+    },
+    "relocation_willingness": { "type": "boolean" }
+  },
+  "lifestyle": {
+    "fitness": {
+      "frequency_per_week": { "type": "integer" },
+      "activities":         { "type": "array", "items": { "type": "string", "enum": ["gym/weights","running","cycling","yoga/pilates","team sports","hiking","swimming","dance","martial arts","other"]  } }
+    },
+    "dietary_preferences": { "type": "array", "items": { "type": "string", "enum": ["no preference","vegetarian","vegan","pescatarian","halal","kosher","low-carb/keto","gluten-free","dairy-free","other"] } },
+    "sleep_pattern": {
+      "bedtime":   { "type": "string", "format": "HH:MM" },
+      "wake_time": { "type": "string", "format": "HH:MM" }
+    },
+    "travel": {
+      "trips_per_year":        { "type": "integer" },
+      "favorite_destinations": { "type": "array", "items": { "type": "string" } }
+    },
+    "hobbies":       { "type": "array", "items": { "type": "string" } },
+    "substance_use": {
+      "smoking":     { "type": "string", "enum": ["no", "social", "occasionally", "regular", "trying to quit"] },
+      "alcohol_use": { "type": "string", "enum": ["none","rarely","socially","weekends","most days"] },
+      "drugs":       { "type": "string", "enum": ["none","rarely","socially","weekends","most days"] }
+    },
+    "pet_ownership": { "type": "array", "items": { "type": "string", "enum": ["dog","cat","small mammals","birds","reptiles","fish","none","allergic","open to pets"] } }
+  },
+  "physical_info": {
+    "self": {
+      "height_cm": { "type": "integer" },
+      "body_type": { "type": "string", "enum": ["slim","average","athletic","muscular","curvy","plus"] }
+    }
+  },
+  "communication_style": {
+    "messages_per_day": {
+        "type": "object",
+        "properties": {
+          "min": { "type": "integer", "minimum": 0 },
+          "max": { "type": "integer", "minimum": 0 }
+        },
+        "description": "Comfortable daily message volume"
+      },
+    "conflict_resolution_style":  { "type": "string", "enum": ["avoidance","compromise","collaboration","accommodation","competition"] },
+    "humor_style":                { "type": "string", "enum": ["witty","dry","sarcastic","wholesome","slapstick","dark","goofy","none"] }
+  }
+}

@@ -1,0 +1,14 @@
+export const LANGS = ['English','Spanish','Mandarin','Hindi','Arabic','French','Bengali','Portuguese','Russian','Urdu','Indonesian','German','Japanese','Korean','Italian'] as const;
+export const GENDERS = ['male','female','other'] as const;
+export const RELIGIONS = ['agnostic','atheist','buddhist','christian','hindu','jewish','muslim','sikh','spiritual not religious','prefer not to say'] as const;
+export const OBS = ['none','occasional','regular','devout'] as const;
+export const POLITICAL = ['very left','left','center-left','center','center-right','right','very right','prefer not to say'] as const;
+export const BODY_TYPES = ['slim','average','athletic','muscular','curvy','plus'] as const;
+export const SMOKING = ['none','rarely','socially','weekends','most days','trying to quit'] as const;
+export const DIET = ['no preference','vegetarian','vegan','pescatarian','halal','kosher','low-carb/keto','gluten-free','dairy-free'] as const;
+export const ACTIVITIES = ['gym/weights','running','cycling','yoga/pilates','team sports','hiking','swimming','dance','martial arts'] as const;
+export const SUB_FREQ = ['none','rarely','socially','weekends','most days','trying to quit'] as const;
+export const CONFLICT = ['avoidance','compromise','collaboration','accommodation','competition'] as const;
+export const HUMOR = ['Affiliative humor', 'Self-enhancing humor', 'Aggressive humor', 'Self-defeating humor'] as const;
+export const FAVORITE_DESTINATIONS = ['the beach','the mountains','the city','the countryside','national parks','lakes/rivers','theme parks','historic towns','camping sites','family’s hometown'] as const;
+export const HOBBIES = ['reading','watching movies/TV','listening to music','cooking','spending time with family','spending time with friends','shopping','walking/jogging','playing video games','sports'] as const;
