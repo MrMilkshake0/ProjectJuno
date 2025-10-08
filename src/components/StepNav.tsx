@@ -1,3 +1,4 @@
+// src/components/StepNav.tsx
 import { Button } from '@/components/ui/button';
 
 export default function StepNav({
@@ -5,8 +6,9 @@ export default function StepNav({
   canNext,
   onPrev,
   onNext,
-  onSubmitClick, // renamed: explicit click handler
+  onSubmitClick,
   isLast,
+  submitting = false,
 }: {
   canPrev: boolean;
   canNext: boolean;
@@ -14,20 +16,20 @@ export default function StepNav({
   onNext: () => void;
   onSubmitClick: () => void;
   isLast: boolean;
+  submitting?: boolean;
 }) {
   return (
     <div className="flex justify-between mt-6">
-      <Button type="button" variant="secondary" onClick={onPrev} disabled={!canPrev}>
+      <Button type="button" variant="secondary" onClick={onPrev} disabled={!canPrev || submitting}>
         Back
       </Button>
 
       {isLast ? (
-        // type="button" so nothing happens until we explicitly run our submit logic
-        <Button type="button" onClick={onSubmitClick} disabled={!canNext}>
-          Submit
+        <Button type="button" onClick={onSubmitClick} disabled={submitting}>
+          {submitting ? 'Submitting…' : 'Submit'}
         </Button>
       ) : (
-        <Button type="button" onClick={onNext} disabled={!canNext}>
+        <Button type="button" onClick={onNext} disabled={!canNext || submitting}>
           Next
         </Button>
       )}

@@ -5,18 +5,16 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import DiscordInvite from "@/components/DiscordInvite";
 
-/**
- * FrontPage
- * - A clean, modern startup-style landing page.
- * - Hero: large headline, supportive subtext, primary CTA → /questionnaire.
- * - Secondary: after-scroll info section with Cards and an FAQ-style Accordion.
- * - Built with shadcn components for consistency and a polished look.
- */
+import Header from '@/components/Header';
+
 export default function FrontPage() {
   return (
     <main className="min-h-screen flex flex-col">
-      {/* HERO SECTION */}
+      <Header />
+
+      {/* ===== HERO (IDENTICAL TO YOUR ORIGINAL) ===== */}
       <section
         className="
           relative flex items-center
@@ -37,12 +35,11 @@ export default function FrontPage() {
             </h1>
 
             <p className="mt-4 text-muted-foreground text-base md:text-lg max-w-prose">
-              Creating a new paradigm in dating by prioritizing meaningful connections and authentic
+              Creating a new paradigm in dating apps by prioritizing meaningful connections and authentic
               interactions over superficial swipes.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              {/* Primary CTA → /questionnaire (shadcn Button as React Router Link) */}
               <Button asChild size="lg" className="group">
                 <Link to="/questionnaire" aria-label="Start the questionnaire">
                   Start the questionnaire
@@ -50,9 +47,8 @@ export default function FrontPage() {
                 </Link>
               </Button>
 
-              {/* Secondary CTA: smooth-scroll to info section */}
               <Button asChild variant="ghost">
-                <a href="#more" aria-label="Learn more about how it works">
+                <a href="#community" aria-label="Learn more about how it works">
                   Learn more
                 </a>
               </Button>
@@ -77,7 +73,7 @@ export default function FrontPage() {
             <div className="grid gap-4 w-full">
               <Card className="shadow-md">
                 <CardHeader>
-                  <CardTitle>How It Will Work</CardTitle>
+                  <CardTitle>How It Will Work (For Now)</CardTitle>
                   <CardDescription>
                     Just fill out the details and the AI/ML system will find the best matches for you.
                   </CardDescription>
@@ -112,120 +108,90 @@ export default function FrontPage() {
         </div>
       </section>
 
-      {/* DIVIDER */}
       <Separator />
 
-      {/* SECONDARY SECTION */}
-      <section
-        id="more"
-        className="py-16 md:py-24 px-6 md:px-10 bg-background"
-        aria-labelledby="more-heading"
-      >
+      {/* ===== COMMUNITY / DISCORD SECTION ===== */}
+      <section id="community" className="py-16 md:py-20 px-6 md:px-10 bg-background">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+            Join the Project Juno Community
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            The Discord server is where I share updates, gather direct feedback, and connect
+            with early testers. If you’d like to help shape Juno or just meet others curious
+            about a new kind of dating app, this is the place.
+          </p>
+
+          <div className="mt-8 max-w-md mx-auto">
+            <DiscordInvite
+              inviteUrl="https://discord.gg/your-invite-code"
+              serverName="Project Juno Community"
+            />
+          </div>
+
+          <p className="mt-6 text-sm text-muted-foreground">
+            Not into Discord? No worries — you can always reach me directly at{" "}
+            <a href="mailto:hello@projectjuno.app" className="underline underline-offset-4">
+              hello@projectjuno.app
+            </a>.
+          </p>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* ===== FAQ ===== */}
+      <section className="py-12 md:py-16 px-6 md:px-10 bg-background">
         <div className="max-w-6xl mx-auto">
-          <div className="max-w-2xl">
-            <h2 id="more-heading" className="text-2xl md:text-3xl font-semibold tracking-tight">
-              The Rambelings of a Madman
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              It is just a hypothesis."With enough data, with the *correct* data it is possible to match people
-              romantically with reasonable accuracy”. It's an odd assertion, something that divides people 
-              even. Many say (and rightfully so) that humans are just too complex, too unique for such a 
-              system to ever work, but I disagree. The human brain does this every single day. My whole 
-              school life I traveled, I don't think I ever stayed at a school for more than 2 years before 
-              moving and in that time I met many many people, yet they weren't so different. In my brain, 
-              without even thinking, these people got sorted into their own group, you could call it a cluster. 
-              Sometimes you meet someone new, someone unique and a new cluster is born and as you 
-              meet more and more people the density of these clusters increase. You start getting an 
-              understanding of how different people think and see the world and eventually if you have seen 
-              enough people and how they interact with each other you get what we call “Matchmakers”. I 
-              believe in the data driven world we live in, especially with the advances we have seen in recent 
-              years that such a system is not only possible but completely inevitable. I am 100% certain 
-              about this. 
-            </p>
-            <h2 id="more-heading" className="text-2xl md:text-3xl font-semibold tracking-tight">
-              A Cry for help
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              This project can not be done alone, I am looking for co-founders, advisors and anyone to be a part of this journey. 
-            </p>
-          </div>
+          <h2 className="text-xl md:text-2xl font-semibold tracking-tight mb-4">Quick questions</h2>
 
-          {/* Feature Cards */}
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <Card className="shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-lg">Signal over Swipes</CardTitle>
-                <CardDescription>Depth first, not left/right.</CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                The questionnaire surfaces values, habits, and non-obvious preferences so the model
-                can look past glossy profiles and lock onto genuine compatibility signals.
-              </CardContent>
-            </Card>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="how">
+              <AccordionTrigger>How does it work?</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                <ol className="list-decimal pl-5 space-y-2">
+                  <li>
+                    <span className="font-medium text-foreground">Fill the questionnaire:</span>{" "}
+                    capture values, habits, timelines, boundaries, and must-haves.
+                  </li>
+                  <li>
+                    <span className="font-medium text-foreground">We review & rank:</span>{" "}
+                    early engine + human sanity-check to filter obvious misalignments and highlight strong fits.
+                  </li>
+                  <li>
+                    <span className="font-medium text-foreground">Warm introduction:</span>{" "}
+                    if both say yes, we connect you and learn from outcomes to improve future matches.
+                  </li>
+                </ol>
 
-            <Card className="shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-lg">Human-Checked Intros</CardTitle>
-                <CardDescription>Every match gets a sanity check.</CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                In the MVP, I personally review both sides before introducing you, then collect
-                feedback to tighten the loop and improve the match engine with real outcomes.
-              </CardContent>
-            </Card>
+                <div className="mt-4">
+                  <Link
+                    to="/questionnaire"
+                    className="inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-primary text-primary-foreground hover:opacity-90"
+                    aria-label="Start the questionnaire"
+                  >
+                    Start the questionnaire
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
 
-            <Card className="shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-lg">Privacy by Default</CardTitle>
-                <CardDescription>Your data, your call.</CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Drafts live locally until you choose to share. Export on your terms, revoke access
-                anytime, and expect plain-English explanations of what the model uses and why.
-              </CardContent>
-            </Card>
-          </div>
+            <AccordionItem value="privacy">
+              <AccordionTrigger>Where is my data stored and used?</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                Drafts stay in your browser until you submit. Once submitted, it’s stored securely
+                in a database only I can access. I use it to test, research, and improve the matching system.
+              </AccordionContent>
+            </AccordionItem>
 
-          {/* FAQ / Details */}
-          <div className="mt-10">
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1">
-                <AccordionTrigger>What happens after I finish the questionnaire?</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  You’ll be taken to a summary view and we generate a structured profile. I review
-                  promising pairings, reach out to both sides to confirm interest, then make a warm
-                  introduction. Post-intro feedback feeds the next round of matches.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-2">
-                <AccordionTrigger>How does the flow work?</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  Sections appear one at a time. Required fields are clearly marked. You can move
-                  back and forth before submitting, and autosave keeps your progress as you go.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Where is my data stored?</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  By default your draft is stored locally in your browser. You decide when to export
-                  or share it. During the MVP, only the minimum necessary fields are used for
-                  matching, and I can walk you through exactly what those are.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-
-          {/* Sticky CTA fallback at bottom */}
-          <div className="mt-12">
-            <Button asChild size="lg" className="w-full sm:w-auto">
-              <Link to="/questionnaire" aria-label="Start the questionnaire from details section">
-                Start the questionnaire
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
+            <AccordionItem value="delete">
+              <AccordionTrigger>How can I delete my data?</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                For now, email or DM me via Discord and I’ll remove it. A self-serve dashboard is on the roadmap.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
     </main>

@@ -3,7 +3,7 @@ import MultiSelectChips from '@/components/fields/MultiSelectChips';
 import TimeInput from '@/components/fields/TimeInput';
 import SelectInput from '@/components/fields/SelectInput';
 import SliderField from '@/components/fields/SliderField';
-import { ACTIVITIES, DIET, SUB_FREQ, FAVORITE_DESTINATIONS, HOBBIES } from '@/lib/constants';
+import { ACTIVITIES, DIET, SUB_FREQ, FAVORITE_DESTINATIONS, HOBBIES, PET_OWNERSHIP} from '@/lib/constants';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Info } from "lucide-react"
 
@@ -53,10 +53,7 @@ export default function LifestyleForm() {
           <SelectInput name="lifestyle.substance_use.drugs" label="Drugs" options={SUB_FREQ} />
         </div>
 
-        <MultiSelectChips
-          name="lifestyle.pet_ownership"
-          label="Pet Ownership"
-          options={['none','dog','cat','small mammals','birds','reptiles','fish','allergic','open to pets']}
+        <MultiSelectChips name="lifestyle.pet_ownership" label="Pet Ownership" options={PET_OWNERSHIP}
         />
       </div>
     </SectionCard>

@@ -1,6 +1,6 @@
 import SectionCard from '@/components/SectionCard';
 import MultiSelectChips from '@/components/fields/MultiSelectChips';
-import { GENDERS, DIET, BODY_TYPES, CONFLICT, OBS, POLITICAL, RELIGIONS, SUB_FREQ } from '@/lib/constants';
+import { DIET, BODY_TYPES, CONFLICT, OBS, POLITICAL, RELIGIONS, SUB_FREQ } from '@/lib/constants';
 import RangeSliderField from '@/components/fields/RangeSliderField';
 import SliderField from '@/components/fields/SliderField';
 import HeightRangeSliderField from '@/components/fields/HeightRangeSliderField';
@@ -13,7 +13,8 @@ export default function PartnerPreferencesForm() {
           <div className="text-sm font-medium">Demographics</div>
           <RangeSliderField base="partner_preferences.demographics.age_range" label="Age Range" min={18} max={100} step={1} />
           <SliderField name="partner_preferences.demographics.age_range.importance" label="Age Range Importance (0-1)" min={0} max={1} step={0.01} />
-          <MultiSelectChips name="partner_preferences.demographics.genders" label="Preferred Genders *" options={GENDERS} />
+          <MultiSelectChips name="partner_preferences.demographics.genders" label="Preferred Genders *" options={["male", "female"]} allowCustom/>
+          <SliderField name="partner_preferences.demographics.gender.importance" label="Gender Importance (0-1)" min={0} max={1} step={0.01} />
         </div>
           <div className="space-y-3">
           <div className="text-sm font-medium">Physical</div>

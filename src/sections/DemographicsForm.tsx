@@ -5,7 +5,7 @@ import MultiSelectChips from '@/components/fields/MultiSelectChips';
 import EnumWithOther from '@/components/fields/EnumWithOther';
 import SliderField from '@/components/fields/SliderField';
 import IncomeRangeWithChartField from '@/components/fields/IncomeRangeWithChartField';
-import { GENDERS, LANGS } from '@/lib/constants';
+import { GENDERS, LANGS , EDUCATION_LEVEL, ETHNICITY} from '@/lib/constants';
 
 export default function DemographicsForm() {
   return (
@@ -13,7 +13,7 @@ export default function DemographicsForm() {
       <div className="grid gap-6">
         <SliderField name="demographics.age" label="Age *" min={18} max={100} step={1} />
 
-        <SelectInput name="demographics.gender" label="Gender *" options={GENDERS} />
+        <EnumWithOther name="demographics.gender" label="Gender *" options={GENDERS} otherKey='other / self-described' otherTextName='demographics.gender_otherText' />
 
         <div className="grid md:grid-cols-2 gap-4">
           <TextInput name="demographics.location.city" label="City" />
@@ -23,16 +23,7 @@ export default function DemographicsForm() {
         <SelectInput
           name="demographics.education_level"
           label="Education Level"
-          options={[
-            'High school',
-            'Vocational/Trade',
-            'Associate/Diploma',
-            "Bachelor's",
-            "Master's",
-            'Doctorate',
-            'Other',
-            'Prefer not to say',
-          ]}
+          options={EDUCATION_LEVEL}
         />
 
         <TextInput name="demographics.occupation" label="Occupation" />
@@ -51,19 +42,7 @@ export default function DemographicsForm() {
         <EnumWithOther
           name="demographics.ethnicity"
           label="Ethnicity"
-          options={[
-            'East Asian',
-            'South Asian',
-            'Southeast Asian',
-            'Middle Eastern/North African',
-            'Black/African',
-            'Latine/Hispanic',
-            'Indigenous',
-            'White/European',
-            'Mixed',
-            'Another / self-described',
-            'Prefer not to say',
-          ]}
+          options={ETHNICITY}
           otherKey={'Another / self-described'}
           otherTextName={'demographics.ethnicity_otherText'}
         />

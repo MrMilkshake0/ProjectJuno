@@ -1,5 +1,5 @@
 export const LANGS = ['English','Spanish','Mandarin','Hindi','Arabic','French','Bengali','Portuguese','Russian','Urdu','Indonesian','German','Japanese','Korean','Italian'] as const;
-export const GENDERS = ['male','female','other'] as const;
+export const GENDERS = ['male','female','other / self-described'] as const;
 export const RELIGIONS = ['agnostic','atheist','buddhist','christian','hindu','jewish','muslim','sikh','spiritual not religious','prefer not to say'] as const;
 export const OBS = ['none','occasional','regular','devout'] as const;
 export const POLITICAL = ['very left','left','center-left','center','center-right','right','very right','prefer not to say'] as const;
@@ -12,3 +12,6 @@ export const CONFLICT = ['avoidance','compromise','collaboration','accommodation
 export const HUMOR = ['Affiliative humor', 'Self-enhancing humor', 'Aggressive humor', 'Self-defeating humor'] as const;
 export const FAVORITE_DESTINATIONS = ['the beach','the mountains','the city','the countryside','national parks','lakes/rivers','theme parks','historic towns','camping sites','family’s hometown'] as const;
 export const HOBBIES = ['reading','watching movies/TV','listening to music','cooking','spending time with family','spending time with friends','shopping','walking/jogging','playing video games','sports'] as const;
+export const PET_OWNERSHIP = ['none','dog','cat','small mammals','birds','reptiles','fish','allergic','open to pets'] as const;
+export const EDUCATION_LEVEL =  ['high school','vocational/trade','associate/diploma',"bachelor's","master's",'doctorate','other','prefer not to say'] as const;
+export const ETHNICITY = ['East Asian','South Asian','Southeast Asian','Middle Eastern/North African','Black/African','Latine/Hispanic','Indigenous','White/European','Mixed','Another / self-described','Prefer not to say'] as const;
