@@ -47,9 +47,6 @@ export default function Header() {
               <Link to="/questionnaire" className="hover:underline">Questionnaire</Link>
             </li>
             <li>
-              <Link to="/personality-test" className="hover:underline">Personality Test</Link> {/* ⬅️ new */}
-            </li>
-            <li>
               <Link to="/about" className="hover:underline">About</Link>
             </li>
           </ul>
