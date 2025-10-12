@@ -3,7 +3,7 @@ import { FormMessage } from '@/components/ui/form';
 import { Check } from 'lucide-react';
 
 export default function FieldStatus({ name }: { name: string }) {
-  const { formState: { errors }, getFieldState } = useFormContext();
+  const { getFieldState } = useFormContext();
   const state = getFieldState(name);
   if (state.error) return <FormMessage>{state.error.message as string}</FormMessage>;
   if (state.isTouched) return (

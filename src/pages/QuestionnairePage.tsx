@@ -86,7 +86,7 @@ export default function QuestionnairePage() {
   };
 
   // Final submit: push to Firebase
-  const { user, loading, signInWithGoogle } = useAuth();
+  const { user } = useAuth();
 
   const onSubmit = async (data: FormShape) => {
     if (!user) {
