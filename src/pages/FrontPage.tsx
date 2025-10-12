@@ -31,7 +31,7 @@ export default function FrontPage() {
               id="hero-heading"
               className="text-4xl md:text-6xl font-bold tracking-tight leading-tight"
             >
-              Project Juno - The first gen 2 dating app
+              Project Juno - The first Gen 3 dating app
             </h1>
 
             <p className="mt-4 text-muted-foreground text-base md:text-lg max-w-prose">
@@ -48,9 +48,9 @@ export default function FrontPage() {
               </Button>
 
               <Button asChild variant="ghost">
-                <a href="#community" aria-label="Learn more about how it works">
-                  Learn more
-                </a>
+                <Link to="/about" aria-label="Learn more about Project Juno">
+                    Learn more
+                </Link>
               </Button>
             </div>
 
@@ -117,9 +117,8 @@ export default function FrontPage() {
             Join the Project Juno Community
           </h2>
           <p className="mt-3 text-muted-foreground">
-            The Discord server is where I share updates, gather direct feedback, and connect
-            with early testers. If you’d like to help shape Juno or just meet others curious
-            about a new kind of dating app, this is the place.
+            The Discord server is where I will share updates, gather direct feedback, and connect
+            with early testers. If you’d like to help shape Juno I am actively looking for passionate people to talk and work with including potential co-founders.
           </p>
 
           <div className="mt-8 max-w-md mx-auto">

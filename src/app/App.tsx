@@ -3,6 +3,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import FrontPage from "@/pages/FrontPage";
 import QuestionnairePage from "@/pages/QuestionnairePage";
 import AboutPage from "@/pages/AboutPage";
+
 import { Toaster } from "sonner";
 
 export default function App() {

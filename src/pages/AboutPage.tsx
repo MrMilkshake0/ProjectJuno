@@ -6,7 +6,7 @@ import {
   Sparkles,
   ScrollText,
   FileText,
-  Mail
+  MessageSquare
 } from 'lucide-react';
 
 import Header from '@/components/Header';
@@ -91,7 +91,7 @@ export default function AboutPage() {
           {/* === Main column === */}
           <div className="space-y-8">
 
-            {/* About Project Juno */}
+            {/* About Project Juno (expanded) */}
             <Card id="about-juno" className="shadow-md">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
@@ -101,70 +101,196 @@ export default function AboutPage() {
                       About Project Juno
                     </CardTitle>
                     <CardDescription>
-                      The story, inspiration, and dream behind Juno.
+                      The story, inspiration, and direction behind Juno.
                     </CardDescription>
                   </div>
                   <Badge variant="outline">Overview</Badge>
                 </div>
               </CardHeader>
-              <CardContent className="prose prose-invert max-w-none">
+
+              <CardContent className="prose prose-invert max-w-none leading-relaxed text-[0.96rem]">
+                {/* 1️⃣ Opening blockquote for theme */}
+                <blockquote className="border-l-4 pl-4 italic text-muted-foreground">
+                  “The next generation of dating systems will optimize for compatibility, not engagement.”
+                </blockquote>
+
+                {/* 2️⃣ Add small heading between idea shifts */}
+                <h3 className="mt-8 text-lg font-semibold text-foreground/90">The Name and the Idea</h3>
                 <p>
-                  <strong>Project Juno</strong> takes its name from <em>Juno</em>, the Roman goddess of
-                  marriage, commitment, and the protector of sacred union. She represents devotion,
-                  stability, and the belief that partnership can be something sacred — not
-                  disposable.
+                  <em>Project Juno</em> takes its name from Juno, the Roman goddess of marriage and commitment — 
+                  a reminder that connection can still mean something lasting, even in a world built around 
+                  constant choice and distraction.
                 </p>
+
                 <p>
-                  This project is my attempt to explore what a modern system for meaningful
-                  connection could look like. I want to build an ecosystem that encourages depth over
-                  novelty, alignment over attention — a space where the idea of long-term
-                  relationships and marriage can find new relevance in a digital world.
+                  The project began as a question: what would a dating system look like if it cared more
+                  about compatibility than engagement? If it tried to understand people — their values,
+                  habits, communication styles — instead of reducing them to swipes and photos?
                 </p>
+
+                {/* 3️⃣ Highlight inspiration with subtle box */}
+                <div className="my-6 rounded-xl border border-muted bg-muted/20 p-4">
+                  <h4 className="text-sm font-medium text-foreground/90 mb-2">Inspiration</h4>
+                  <p className="text-muted-foreground">
+                    It was partly inspired by{" "}
+                    <a
+                      href="https://youtubeatlas.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-4"
+                    >
+                      YouTube Atlas
+                    </a>
+                    , a visualization that showed how people naturally group together based on what they engage
+                    with online. Seeing that pattern sparked an idea: if simple data can reveal shared interests,
+                    maybe the right kind of data could reveal compatibility too — not as a replacement for human
+                    intuition, but as a tool to support it.
+                  </p>
+                </div>
+
+                {/* 4️⃣ Break long paragraphs with visual separators */}
+                <Separator className="my-8 opacity-40" />
+
+                <h3 className="text-lg font-semibold text-foreground/90">The Philosophy</h3>
                 <p>
-                  It’s still early, more of a vision than a product. But at its core, <em>Project
-                  Juno</em> is about rekindling belief in lasting partnership, and seeing if
-                  technology — used carefully — can help bring that ideal back into focus.
+                  <em>Project Juno</em> isn’t about building another app for attention.
+                  It’s about exploring how technology could help people find alignment more thoughtfully — 
+                  to use data in a way that supports human judgment, rather than trying to replace it.
+                </p>
+
+                <div className="my-6 border-l-2 pl-4 text-muted-foreground">
+                  <p>
+                    “You can’t guarantee chemistry, but you can improve the odds of it happening.”
+                  </p>
+                </div>
+
+                <h3 className="text-lg font-semibold text-foreground/90 mt-10">The Vision Ahead</h3>
+                <p>
+                  It’s still early — more of a framework and set of experiments than a product.
+                  But the vision is larger: to eventually grow Juno into a complete product ecosystem
+                  built around meaningful connection — a platform that values understanding over noise,
+                  and long-term outcomes over quick interactions.
                 </p>
               </CardContent>
             </Card>
 
-            {/* Manifesto / Story as a callout */}
-            <Card id="manifesto" className="shadow-md">
+
+
+            {/* The Future of Project Juno (Vision / Pillars) */}
+            <Card id="future" className="shadow-md">
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2">
                   <FileText className="h-5 w-5" />
-                  The Case for Data-Informed Matching
+                  The Future of Project Juno
                 </CardTitle>
                 <CardDescription>
-                  Why I believe technology, used thoughtfully, can strengthen how people find one another.
+                  Where I want to take it — in simple, concrete terms.
                 </CardDescription>
               </CardHeader>
+
               <CardContent className="prose prose-invert max-w-none">
                 <p>
-                  I’ve always believed that the way we connect can be improved — not replaced — by technology.
-                  We already use data to make better decisions about nearly everything: health, learning,
-                  work, and wellbeing. Yet when it comes to relationships, the systems we have often push us
-                  toward speed and surface-level judgment, not understanding.
+                  <strong>From forms to dialogue.</strong> Replace the questionnaire with a
+                  conversation-led system that learns naturally over time. Think reflective chats
+                  that can ask better follow-ups, notice consistency, and build a truer picture of a
+                  person than checkboxes ever could.
                 </p>
+
                 <p>
-                  The idea behind <em>Project Juno</em> is simple: to explore whether we can use data
-                  responsibly to make introductions that actually make sense. Not to quantify love, but to
-                  help people notice compatibility they might otherwise miss — values, timelines, and life
-                  rhythms that naturally align.
+                  <strong>Many small signals, learned weights.</strong> Model compatibility from
+                  thousands of weak correlations — habits, preferences, rhythms, constraints — and
+                  let the system learn the <em>weights</em> that matter. Not to score people, but to
+                  map a space of likely fit with room for serendipity.
                 </p>
+
                 <p>
-                  I don’t see this as an algorithmic replacement for intuition or chemistry, but as a way to
-                  give those things a better starting point. The goal is not control, but clarity — tools that
-                  support real human judgment and reduce the noise that makes dating exhausting.
+                  <strong>Plain-language “why”.</strong> When a suggestion is made, explain it
+                  simply: the 2–3 reasons the system thinks you might click. No mystique, no
+                  buzzwords — just enough context to decide if saying hello makes sense.
                 </p>
+
                 <p>
-                  If technology can help people approach relationships with more awareness, more honesty, and
-                  more intention, then maybe it can serve something truly human after all.
+                  <strong>Outcome-aware iteration.</strong> Use opt-in feedback (what led to a good
+                  date, what didn’t) to quietly adjust those weights over time. Keep experiments
+                  small — early, local cohorts — and publish what’s learned so others can poke holes
+                  in it.
+                </p>
+
+                <p>
+                  <strong>Build an ecosystem, not just a feature.</strong> Over time, stitch these
+                  pieces into something that feels alive: a system that understands people better the
+                  longer it walks with them — and uses that understanding to make fewer, better
+                  introductions.
                 </p>
               </CardContent>
             </Card>
 
+            {/* Roadmap (tactical next steps) */}
+            <Card id="roadmap" className="shadow-md">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2">
+                  <FileText className="h-5 w-5" />
+                  The Roadmap
+                </CardTitle>
+                <CardDescription>
+                  The near-term milestones and long-term direction for Project Juno.
+                </CardDescription>
+              </CardHeader>
 
+              <CardContent className="prose prose-invert max-w-none">
+                <ol className="relative border-l pl-6 space-y-6">
+                  <li>
+                    <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary" />
+                    <p className="font-medium text-foreground">Near term — v0.x foundations</p>
+                    <p className="mt-1">
+                      Use the questionnaire as a first step to gather signal, learn from early users, and test
+                      which factors actually correlate with meaningful compatibility. Keep everything
+                      private-by-default and clearly explain how data is used.
+                    </p>
+                  </li>
+
+                  <li>
+                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
+                    <p className="font-medium text-foreground">Conversation-led understanding</p>
+                    <p className="mt-1">
+                      Transition from static questions to a dynamic, conversation-based system that learns about
+                      each person naturally over time — more reflective and human, less transactional.
+                    </p>
+                  </li>
+
+                  <li>
+                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
+                    <p className="font-medium text-foreground">Explainable matching engine</p>
+                    <p className="mt-1">
+                      Build a transparent matching layer that combines signals to generate suggestions, and
+                      communicates <em>why</em> each introduction makes sense — always keeping a light human
+                      review step before connections are made.
+                    </p>
+                  </li>
+
+                  <li>
+                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
+                    <p className="font-medium text-foreground">Warm introductions over swiping</p>
+                    <p className="mt-1">
+                      Replace infinite feeds and swipes with occasional, high-quality introductions. Emphasize
+                      comfort and clarity over novelty and speed — reducing noise and decision fatigue.
+                    </p>
+                  </li>
+
+                  <li>
+                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
+                    <p className="font-medium text-foreground">Beyond v1 — a supportive ecosystem</p>
+                    <p className="mt-1">
+                      Expand Juno into a platform that helps couples thrive long after they meet — with
+                      lightweight shared planning tools, reflection prompts, and feedback loops that promote
+                      growth and long-term stability.
+                    </p>
+                  </li>
+                </ol>
+              </CardContent>
+            </Card>
+
+            {/* Building Together (Discord CTA) */}
             <Card id="help" className="shadow-md">
               <CardHeader>
                 <CardTitle>Building Together</CardTitle>
@@ -174,19 +300,17 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent className="prose prose-invert max-w-none">
                 <p>
-                  <em>Project Juno</em> is still an idea taking shape — a framework, a set of questions, and a
-                  vision of how technology could help people form more meaningful relationships. It’s far too
-                  big and complex to build alone, and that’s why I’m sharing it early.
+                  <em>Project Juno</em> is still an idea taking shape — a framework, a set of questions,
+                  and a direction. It’s too big to explore alone, which is why I’m sharing it early.
                 </p>
                 <p>
-                  I’m looking for people who care about the intersection of <strong>data, relationships, and
-                  ethics</strong> — builders, researchers, designers, or simply thoughtful individuals who want
-                  to explore what a better system might look like. Whether you’re curious, skeptical, or
-                  inspired, your perspective matters.
+                  I’m looking for people who are curious about how connection, data, and design can
+                  intersect in a more human way — builders, researchers, creatives, or simply
+                  thoughtful people who want to talk about what a better system might look like.
                 </p>
                 <p>
-                  If this resonates with you, I’d love to connect — to discuss ideas, challenges, and
-                  possibilities. Join the community, share feedback, or just see where the conversation goes.
+                  If this resonates, I’d love to connect — to trade ideas, share feedback, and
+                  explore what bringing something like Juno to life could mean.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-3">
@@ -197,45 +321,11 @@ export default function AboutPage() {
                       rel="noopener noreferrer"
                       aria-label="Join the Project Juno Discord server"
                     >
-                      <Mail className="mr-2 h-4 w-4" />
+                      <MessageSquare className="mr-2 h-4 w-4" />
                       Join the Discord
                     </a>
                   </Button>
                 </div>
-              </CardContent>
-            </Card>
-
-
-
-            {/* Roadmap */}
-            <Card id="roadmap" className="shadow-md">
-              <CardHeader>
-                <CardTitle>Roadmap</CardTitle>
-                <CardDescription>What we’re shipping next (subject to change).</CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                <ol className="relative border-l pl-6 space-y-6">
-                  <li>
-                    <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary" />
-                    <p className="font-medium text-foreground">MVP matching (constraints + preferences)</p>
-                    <p className="mt-1">Rank candidate pairs without swiping; warm intros only.</p>
-                  </li>
-                  <li>
-                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
-                    <p className="font-medium text-foreground">Outcome feedback loops</p>
-                    <p className="mt-1">Use opt-in outcomes to refine rankings and reduce bad fits.</p>
-                  </li>
-                  <li>
-                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
-                    <p className="font-medium text-foreground">Feature weighting & explainability</p>
-                    <p className="mt-1">Show <em>why</em> a match was suggested in plain language.</p>
-                  </li>
-                  <li>
-                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
-                    <p className="font-medium text-foreground">Private-by-default profiles</p>
-                    <p className="mt-1">You control what’s visible and when.</p>
-                  </li>
-                </ol>
               </CardContent>
             </Card>
 
@@ -261,11 +351,11 @@ export default function AboutPage() {
                 <a className="block hover:underline underline-offset-4" href="#about-juno">
                   About Project Juno
                 </a>
-                <a className="block hover:underline underline-offset-4" href="#manifesto">
-                  The Ramblings of a Madman
+                <a className="block hover:underline underline-offset-4" href="#future">
+                  The Future of Project Juno
                 </a>
                 <a className="block hover:underline underline-offset-4" href="#help">
-                  A Cry for Help
+                  Building Together
                 </a>
                 <a className="block hover:underline underline-offset-4" href="#roadmap">
                   Roadmap

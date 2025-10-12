@@ -44,14 +44,13 @@ export default function Header() {
         <nav className="ml-6 hidden sm:block">
           <ul className="flex items-center gap-4 text-sm">
             <li>
-              <Link to="/questionnaire" className="hover:underline">
-                Questionnaire
-              </Link>
+              <Link to="/questionnaire" className="hover:underline">Questionnaire</Link>
             </li>
             <li>
-              <Link to="/about" className="hover:underline">
-                About
-              </Link>
+              <Link to="/personality-test" className="hover:underline">Personality Test</Link> {/* ⬅️ new */}
+            </li>
+            <li>
+              <Link to="/about" className="hover:underline">About</Link>
             </li>
           </ul>
         </nav>
