@@ -130,8 +130,8 @@ export default function FrontPage() {
 
           <p className="mt-6 text-sm text-muted-foreground">
             Not into Discord? No worries — you can always reach me directly at{" "}
-            <a href="mailto:hello@projectjuno.app" className="underline underline-offset-4">
-              hello@projectjuno.app
+            <a href="mailto:projectjunoapp@gmail.com" className="underline underline-offset-4">
+              projectjunoapp@gmail.com
             </a>.
           </p>
         </div>
