@@ -125,7 +125,7 @@ export default function AboutPage() {
                 <p>
                   The project began as a question: what would a dating system look like if it cared more
                   about compatibility than engagement? If it tried to understand people — their values,
-                  habits, communication styles — instead of reducing them to swipes and photos?
+                  habits, communication styles and the thousands of data points that make them unique — instead of reducing them to swipes and photos?
                 </p>
 
                 {/* 3️⃣ Highlight inspiration with subtle box */}
