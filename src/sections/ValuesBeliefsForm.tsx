@@ -6,6 +6,8 @@ import { FormField, FormItem, FormLabel, FormControl } from '@/components/ui/for
 import FieldStatus from '@/components/FieldStatus';
 import { useFormContext, useWatch } from 'react-hook-form';
 import RangeSliderField from '@/components/fields/RangeSliderField';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Info } from "lucide-react";
 
 export default function ValuesBeliefsForm() {
   const form = useFormContext();
@@ -18,7 +20,23 @@ export default function ValuesBeliefsForm() {
         <SelectInput name="values_beliefs.religious_observance" label="Religious Observance" options={OBS} />
         <SelectInput name="values_beliefs.political_ideology" label="Political Ideology" options={POLITICAL} />
 
-        {/* ===== Milestone Timelines ===== */}
+        {/* ===== Milestone Timeline (with tooltip) ===== */}
+        <div className="flex items-center gap-2 mb-2 text-sm font-medium">
+          Desired Milestones Timeline
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Info className="h-4 w-4 text-muted-foreground cursor-pointer" />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>
+                  Being on completely different timelines can get awkward — this aims to help align expectations early.
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+
         <RangeSliderField
           base="relationship_history.desired_milestones_timeline.dating_start_years"
           label="Time to Start Dating Seriously (years from meeting)"
