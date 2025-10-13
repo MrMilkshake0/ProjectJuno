@@ -9,9 +9,66 @@ import DiscordInvite from "@/components/DiscordInvite";
 
 import Header from '@/components/Header';
 
+// --- Small helpers (optional) ---
+function abs(path: string) {
+  const base = "https://www.projectjuno.ai";
+  return path.startsWith("http") ? path : `${base}${path.startsWith("/") ? "" : "/"}${path}`;
+}
+function Canonical({ href }: { href: string }) {
+  return <link rel="canonical" href={href} />;
+}
+function JsonLd<T extends object>({ data }: { data: T }) {
+  return <script type="application/ld+json">{JSON.stringify(data)}</script>;
+}
+
 export default function FrontPage() {
+  // JSON-LD blocks for the homepage
+  const orgLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Project Juno",
+    url: abs("/"),
+    logo: abs("/icon-512.png"),
+    sameAs: [
+      // add socials when ready
+    ],
+  };
+  const siteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    url: abs("/"),
+    name: "Project Juno",
+    // Add SearchAction only when you actually have on-site search:
+    // potentialAction: {
+    //   "@type": "SearchAction",
+    //   target: `${abs("/search")}?q={query}`,
+    //   "query-input": "required name=query"
+    // }
+  };
+
   return (
     <main className="min-h-screen flex flex-col">
+      {/* === Page-specific head metadata (React 19 will hoist to <head>) === */}
+      <title>Project Juno — Compatibility-first connections</title>
+      <meta
+        name="description"
+        content="Project Juno is a gen-3 dating experience focused on meaningful, data-driven compatibility — not superficial swipes."
+      />
+      <Canonical href={abs("/")} />
+      <meta name="robots" content="index,follow" />
+
+      {/* Open Graph / Twitter */}
+      <meta property="og:title" content="Project Juno — Compatibility-first connections" />
+      <meta property="og:description" content="Creating a new paradigm in dating: authentic matches over swipes." />
+      <meta property="og:url" content={abs("/")} />
+      <meta property="og:type" content="website" />
+      {/* If/when you have a share image: <meta property="og:image" content={abs("/og-image.png")} /> */}
+      <meta name="twitter:card" content="summary_large_image" />
+
+      {/* Structured data */}
+      <JsonLd data={orgLd} />
+      <JsonLd data={siteLd} />
+
       <Header />
 
       {/* ===== HERO (IDENTICAL TO YOUR ORIGINAL) ===== */}
