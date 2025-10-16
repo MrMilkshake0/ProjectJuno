@@ -71,11 +71,12 @@ export default function FrontPage() {
 
       <Header />
 
-      {/* ===== HERO (IDENTICAL TO YOUR ORIGINAL) ===== */}
+      {/* ===== HERO (FIXED FOR MOBILE OVERLAP) ===== */}
       <section
         className="
-          relative flex items-center
-          min-h-[80dvh]
+          relative isolate overflow-clip
+          flex items-center
+          min-h-[80svh]
           px-6 md:px-10
           bg-gradient-to-b from-background via-background to-muted/40
         "
@@ -106,7 +107,7 @@ export default function FrontPage() {
 
               <Button asChild variant="ghost">
                 <Link to="/about" aria-label="Learn more about Project Juno">
-                    Learn more
+                  Learn more
                 </Link>
               </Button>
             </div>
@@ -159,11 +160,14 @@ export default function FrontPage() {
           </div>
         </div>
 
-        {/* Subtle bottom cue to scroll */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs text-muted-foreground">
-          Scroll for details
+        {/* Subtle bottom cue to scroll (safe, contained) */}
+        <div className="absolute inset-x-0 bottom-[env(safe-area-inset-bottom,1rem)] z-10 pointer-events-none">
+          <div className="mx-auto w-fit rounded-full px-3 py-1 text-xs text-muted-foreground bg-background/70 backdrop-blur shadow">
+            Scroll for details
+          </div>
         </div>
       </section>
+
 
       <Separator />
 
