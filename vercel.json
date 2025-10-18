@@ -1,5 +1,8 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "redirects": [
+    { "source": "https://www.projectjuno.ai/(.*)", "destination": "https://projectjuno.ai/$1", "permanent": true }
   ]
 }

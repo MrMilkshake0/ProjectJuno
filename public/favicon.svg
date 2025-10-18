@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 512 512"
+     width="512" height="512"
+     fill="none"
+     stroke="#ffffff"
+     stroke-width="32"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     style="background:#0b0b0f">
+  <path d="M235 60a21 21 0 0 1 42 0l22 118a40 40 0 0 0 32 32l118 22a21 21 0 0 1 0 42l-118 22a40 40 0 0 0-32 32l-22 118a21 21 0 0 1-42 0l-22-118a40 40 0 0 0-32-32L63 274a21 21 0 0 1 0-42l118-22a40 40 0 0 0 32-32z"/>
+  <path d="M420 40v80"/>
+  <path d="M460 80h-80"/>
+  <circle cx="80" cy="440" r="40"/>
+</svg>

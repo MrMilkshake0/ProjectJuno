@@ -13,4 +13,8 @@
     <loc>https://projectjuno.ai/questionnaire</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://projectjuno.ai/whitepaper</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>
