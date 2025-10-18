@@ -3,16 +3,16 @@
 
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [{ "type": "host", "value": "www.projectjuno.ai" }],
-      "destination": "https://projectjuno.ai/:1",
+      "destination": "https://projectjuno.ai/:path*",
       "permanent": true
     }
   ],
 
   "rewrites": [
     {
-      "source": "/((?!assets/|favicon\\.ico|favicon\\.svg|icon-\\d+\\.png|apple-touch-icon\\.png|site\\.webmanifest|robots\\.txt|sitemap\\.xml).*)",
+      "source": "/:path*",
       "has": [{ "type": "header", "key": "accept", "value": "text/html" }],
       "destination": "/index.html"
     }
