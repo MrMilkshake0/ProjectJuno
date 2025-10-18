@@ -1,20 +1,6 @@
 {
   "cleanUrls": true,
-
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.projectjuno.ai" }],
-      "destination": "https://projectjuno.ai/:path*",
-      "permanent": true
-    }
-  ],
-
   "rewrites": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "header", "key": "accept", "value": "text/html" }],
-      "destination": "/index.html"
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
