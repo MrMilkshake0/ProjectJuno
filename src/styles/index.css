@@ -124,3 +124,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Re-enable list styles inside prose blocks */
+.prose ul { list-style: disc; padding-left: 1.25rem; }
+.prose ol { list-style: decimal; padding-left: 1.25rem; }

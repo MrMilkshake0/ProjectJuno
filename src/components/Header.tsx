@@ -49,6 +49,9 @@ export default function Header() {
             <li>
               <Link to="/about" className="hover:underline">About</Link>
             </li>
+            <li>
+              <Link to="/whitepaper" className="hover:underline">Whitepaper</Link>
+            </li>
           </ul>
         </nav>
 

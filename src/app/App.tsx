@@ -3,6 +3,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import FrontPage from "@/pages/FrontPage";
 import QuestionnairePage from "@/pages/QuestionnairePage";
 import AboutPage from "@/pages/AboutPage";
+import WhitepaperPage from "@/pages/WhitepaperPage";
 import { Toaster } from "sonner";
 
 // ✅ Optional helpers for meta reuse
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/" element={<FrontPage />} />
           <Route path="/questionnaire" element={<QuestionnairePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/whitepaper" element={<WhitepaperPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 

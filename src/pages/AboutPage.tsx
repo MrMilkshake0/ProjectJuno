@@ -238,55 +238,52 @@ export default function AboutPage() {
               </CardHeader>
 
               <CardContent className="prose prose-invert max-w-none">
-                <ol className="relative border-l pl-6 space-y-6">
-                  <li>
-                    <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary" />
-                    <p className="font-medium text-foreground">Near term — v0.x foundations</p>
-                    <p className="mt-1">
-                      Use the questionnaire as a first step to gather signal, learn from early users, and test
+                <ol
+                  className="relative pl-6 space-y-8 not-prose ![list-style:none]"
+                  role="list"
+                >
+                  {[
+                    {
+                      title: "Near term — v0.x foundations",
+                      body: `Use the questionnaire as a first step to gather signal, learn from early users, and test
                       which factors actually correlate with meaningful compatibility. Keep everything
-                      private-by-default and clearly explain how data is used.
-                    </p>
-                  </li>
-
-                  <li>
-                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
-                    <p className="font-medium text-foreground">Conversation-led understanding</p>
-                    <p className="mt-1">
-                      Transition from static questions to a dynamic, conversation-based system that learns about
-                      each person naturally over time — more reflective and human, less transactional.
-                    </p>
-                  </li>
-
-                  <li>
-                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
-                    <p className="font-medium text-foreground">Explainable matching engine</p>
-                    <p className="mt-1">
-                      Build a transparent matching layer that combines signals to generate suggestions, and
-                      communicates <em>why</em> each introduction makes sense — always keeping a light human
-                      review step before connections are made.
-                    </p>
-                  </li>
-
-                  <li>
-                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
-                    <p className="font-medium text-foreground">Warm introductions over swiping</p>
-                    <p className="mt-1">
-                      Replace infinite feeds and swipes with occasional, high-quality introductions. Emphasize
-                      comfort and clarity over novelty and speed — reducing noise and decision fatigue.
-                    </p>
-                  </li>
-
-                  <li>
-                    <div className="absolute -left-[9px] h-4 w-4 rounded-full bg-primary mt-7" />
-                    <p className="font-medium text-foreground">Beyond v1 — a supportive ecosystem</p>
-                    <p className="mt-1">
-                      Expand Juno into a platform that helps couples thrive long after they meet — with
+                      private-by-default and clearly explain how data is used.`,
+                    },
+                    {
+                      title: "Conversation-led understanding",
+                      body: `Transition from static questions to a dynamic, conversation-based system that learns about
+                      each person naturally over time — more reflective and human, less transactional.`,
+                    },
+                    {
+                      title: "Explainable matching engine",
+                      body: `Build a transparent matching layer that combines signals to generate suggestions, and
+                      communicates why each introduction makes sense — always keeping a light human
+                      review step before connections are made.`,
+                    },
+                    {
+                      title: "Warm introductions over swiping",
+                      body: `Replace infinite feeds and swipes with occasional, high-quality introductions. Emphasize
+                      comfort and clarity over novelty and speed — reducing noise and decision fatigue.`,
+                    },
+                    {
+                      title: "Beyond v1 — a supportive ecosystem",
+                      body: `Expand Juno into a platform that helps couples thrive long after they meet — with
                       lightweight shared planning tools, reflection prompts, and feedback loops that promote
-                      growth and long-term stability.
-                    </p>
-                  </li>
+                      growth and long-term stability.`,
+                    },
+                  ].map(({ title, body }, i) => (
+                    <li key={i} className="relative pl-6">
+                      {/* ✅ dot perfectly centered with text */}
+                      <span
+                        className="absolute left-0 top-[0.6em] -translate-y-1/2 h-3 w-3 rounded-full bg-primary"
+                        aria-hidden="true"
+                      />
+                      <p className="font-medium text-foreground">{title}</p>
+                      <p className="mt-1 text-muted-foreground">{body}</p>
+                    </li>
+                  ))}
                 </ol>
+
               </CardContent>
             </Card>
 
