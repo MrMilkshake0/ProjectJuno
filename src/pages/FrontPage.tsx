@@ -105,11 +105,18 @@ export default function FrontPage() {
                 </Link>
               </Button>
 
-              <Button asChild variant="ghost">
-                <Link to="/about" aria-label="Learn more about Project Juno">
+              <Button
+                asChild
+                variant="ghost"
+                className="glow-button text-primary font-medium px-5 py-2 rounded-md"
+              >
+                <Link to="/about" aria-label="Learn more about Project Juno" className="inline-flex items-center">
                   Learn more
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
+
+
             </div>
 
             {/* Small trust bar / bullets */}

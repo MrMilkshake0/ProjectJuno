@@ -115,7 +115,7 @@ export default function WhitepaperPage() {
               {/* ===== 1. INTRODUCTION ===== */}
               <Section id="introduction" title="1. Introduction">
                 <p className="my-2">
-                  The dating landscape of the 2020s is dominated by platforms built to retain users, not connect them.
+                  The dating landscape of the 2020s is dominated by platforms built to retain users.
                   Modern systems reward addictive usage loops — endless swipes, dopamine cycles, and superficial metrics —
                   while providing little transparency into why matches occur or how compatibility is determined.
                 </p>
@@ -188,9 +188,20 @@ export default function WhitepaperPage() {
               {/* ===== 4. CURRENT PROTOTYPE ===== */}
               <Section id="prototype" title="4. Current Prototype & Direction">
                 <p className="my-2">
-                  Juno is early — a working prototype testing whether structured self-reflection can meaningfully predict
-                  compatibility. The focus is clarity, not complexity. Components can evolve, but the principle stays
-                  constant: model compatibility transparently, respectfully, and in human terms.
+                  Juno is early — a working prototype exploring whether structured self-reflection can meaningfully predict
+                  compatibility. The current system captures roughly <strong>~100 nodes of information</strong> through a static questionnaire:
+                  a single structured form that models temperament, lifestyle, and values across a few core layers. It’s intentionally
+                  simple — enough to begin mapping compatibility, but not yet expressive of the full human picture.
+                </p>
+                <p className="my-2">
+                  The next step is to move from <strong>static forms</strong> to a <strong>dynamic, conversational model</strong> — an adaptive, LLM-based
+                  interviewer that learns as it interacts. Instead of fixed questions, it builds understanding through dialogue,
+                  adjusting prompts based on what it learns.
+                </p>
+                <p className="my-2">
+                  This shift expands both <strong>depth</strong> and <strong>precision</strong>, raising each profile from about 100 nodes to roughly
+                  <strong> 800–1200 nodes</strong> — every node an interpretable element of belief, habit, motivation, or emotional style. The
+                  principle remains constant: model compatibility transparently, respectfully, and in human terms.
                 </p>
               </Section>
 
@@ -230,28 +241,33 @@ export default function WhitepaperPage() {
                   how two people change, and whether those directions complement each other.
                 </p>
 
-                <H3>5.2 Profile Vectorization</H3>
-                <ul className="list-disc pl-6 space-y-1 my-2">
-                  <li><strong>Continuous traits:</strong> normalized onto a shared scale for consistent comparison.</li>
-                  <li><strong>Categorical traits:</strong> encoded as small, interpretable segments (not a single opaque score).</li>
-                  <li><strong>Ranges &amp; constraints:</strong> deal-breakers define boundaries first; preferences remain explicit.</li>
-                </ul>
-                <p className="my-2">The goal is a common language for comparison while preserving human meaning.</p>
+                <H3>5.2 Profile Node Representation & Embedding</H3>
+                <p className="my-2">
+                  Each person is described through roughly <strong>800–1200 nodes</strong> — individual, interpretable signals about
+                  temperament, values, lifestyle, and intent. Together these nodes form a detailed informational map:
+                  rich, structured, and human-readable.
+                </p>
+                <p className="my-2">
+                  For efficient and meaningful comparison, this high-dimensional map is <strong>compressed into an embedding</strong> —
+                  a <strong>128–256-dimension vector</strong> that preserves relational structure while removing redundancy. Each vector
+                  acts like a <em>psychological coordinate</em> in a shared compatibility space; distances capture broad relational
+                  similarity — not identity, but resonance.
+                </p>
 
                 <H3>5.3 Matching Through Weighted Alignment</H3>
                 <div className="grid md:grid-cols-2 gap-x-8 gap-y-2 my-2">
                   <div>
                     <div className="font-medium">What gets weight</div>
                     <ul className="list-disc pl-6 space-y-1 my-1 text-muted-foreground">
-                      <li>User-declared importance (values, lifestyle, emotional pace).</li>
-                      <li>Principles &amp; tempo over surface-level trivia.</li>
+                      <li>Declared importance — what each person says truly matters.</li>
+                      <li>Underlying principles — communication tempo, values, emotional balance.</li>
                     </ul>
                   </div>
                   <div>
                     <div className="font-medium">What this avoids</div>
                     <ul className="list-disc pl-6 space-y-1 my-1 text-muted-foreground">
                       <li>Mirror-matching clones.</li>
-                      <li>Overfitting to hobbies, aesthetics, or one-off answers.</li>
+                      <li>Overfitting to trivia, aesthetics, or one-off answers.</li>
                     </ul>
                   </div>
                 </div>
@@ -259,8 +275,8 @@ export default function WhitepaperPage() {
 
                 <H3>5.4 How Weighting Evolves Over Time</H3>
                 <ol className="list-decimal pl-6 space-y-1 my-2">
-                  <li><strong>Start:</strong> use personal intent as the initial weighting (what you mark as critical).</li>
-                  <li><strong>Learn:</strong> post-introduction reflections nudge weights <em>slowly</em>.</li>
+                  <li><strong>Start:</strong> use declared intent as the initial weighting (what you mark as critical).</li>
+                  <li><strong>Learn:</strong> reflections and outcomes nudge weights <em>slowly</em>, identifying what truly drives connection.</li>
                   <li><strong>Guard:</strong> never override preference; adapt within clear constraints.</li>
                 </ol>
 
@@ -275,6 +291,10 @@ export default function WhitepaperPage() {
 
               {/* ===== 6. DEVELOPMENT PRIORITIES ===== */}
               <Section id="priorities" title="6. Development Priorities">
+                <p className="my-2">
+                  The next phase centers on depth, adaptability, and explainability — moving from static collection to dynamic learning,
+                  then toward systems that can reason about compatibility and communicate those insights clearly.
+                </p>
                 <div className="overflow-x-auto my-2">
                   <table className="w-full border-collapse text-sm md:text-base">
                     <thead>
@@ -286,10 +306,26 @@ export default function WhitepaperPage() {
                     </thead>
                     <tbody>
                       {[
-                        ["Foundation", "Build reliable questionnaire & data capture", "Active"],
-                        ["Clarity", "Create readable, narrative-style results", "In progress"],
-                        ["Matching Prototype", "Surface complementary profiles via weighted alignment", "Planned"],
-                        ["Feedback Loop", "Refine weighting via post-intro reflections", "Planned"],
+                        [
+                          "Dynamic Data Collection",
+                          "Transition from a static questionnaire (~100 nodes) to an adaptive, LLM-based conversational format that expands each profile toward ~800–1200 nodes.",
+                          "Active",
+                        ],
+                        [
+                          "Feature Weighting & Importance Learning",
+                          "Build the system that interprets both current (~100) and future (800–1200) nodes — learning correct feature importance/weights and how they vary by context.",
+                          "In Progress / Later",
+                        ],
+                        [
+                          "Feedback Loops & Interpersonal Weighting",
+                          "Introduce post-introduction feedback and refine not only individual profiles but the relational weights between pairs.",
+                          "Later",
+                        ],
+                        [
+                          "Explainability & Transparency",
+                          "Surface clear, human-readable reasons for matches, showing how specific factors contributed.",
+                          "Later",
+                        ],
                       ].map(([a, b, c], i) => (
                         <tr key={i} className="border-t border-muted/40">
                           <td className="py-3 pr-4 font-medium">{a}</td>
@@ -305,7 +341,7 @@ export default function WhitepaperPage() {
               {/* ===== 7. GROWTH ===== */}
               <Section id="growth" title="7. Growth & Ecosystem">
                 <p className="my-2">
-                  Growth is organic — through belief, conversation, and credibility. A short <strong>“Dating Style Snapshot”</strong> offers an
+                  Growth is organic — through belief, conversation, and credibility. A short <strong>“Dating Questionnaire”</strong> offers an
                   approachable entry point; a private early community shapes the evolution. No ads or gimmicks — just shared intent.
                 </p>
               </Section>
@@ -323,7 +359,7 @@ export default function WhitepaperPage() {
               <Section id="future" title="9. Future Development Path">
                 <ul className="list-disc pl-6 space-y-1 my-2">
                   <li><strong>Dynamic Representations</strong> — evolving profiles that reflect growth over time.</li>
-                  <li><strong>Feedback-Driven Learning</strong> — refining importance weights based on real outcomes.</li>
+                  <li><strong>Feedback-Driven Learning</strong> — refining feature weights and embeddings from real outcomes.</li>
                   <li><strong>Temporal Compatibility</strong> — modeling how life stage and change affect alignment.</li>
                   <li><strong>Cross-Modal Signals</strong> — responsibly adding context (e.g., routine, activity tempo) to improve accuracy.</li>
                 </ul>
@@ -348,13 +384,38 @@ export default function WhitepaperPage() {
 
               {/* ===== 11. AUTHOR ===== */}
               <Section id="author" title="11. Author’s Note">
-                <p className="my-2">[Author’s Note coming soon]</p>
+                <p className="my-2">
+                  I’m Abishek — the person behind Project Juno.
+                </p>
+                <p className="my-2">
+                  This idea has been evolving for years. It’s taken many forms — from early experiments generating
+                  synthetic data to simulate human answers, to exploring whether content patterns from platforms
+                  like TikTok or YouTube could be used to map people’s interests and how those align with others.
+                  Each version has been an attempt to move closer to the kind of matching system I envision for the
+                  future — one that uses data to understand people meaningfully, not manipulate them.
+                </p>
+                <p className="my-2">
+                  I’ve used ChatGPT throughout this process — not just for writing, but as a way to refine my ideas,
+                  test assumptions, and learn how to execute them. It’s helped me translate intuition into structure,
+                  and structure into something buildable. The concepts and direction are my own; AI just helped me
+                  think more clearly and express them better.
+                </p>
+                <p className="my-2">
+                  Project Juno isn’t a finished product. It’s a statement of intent — to build technology that connects
+                  people through alignment, not algorithms built for addiction. <br />
+                  — Abishek, October 2025<br />
+                </p>
               </Section>
 
-              <footer className="mt-10 text-sm text-muted-foreground">
+
+              <footer className="mt-10 text-sm text-muted-foreground space-y-2">
                 <Link to="/questionnaire" className="underline hover:no-underline">
-                  Try the “Dating Style Snapshot”
+                  Try the “Dating Questionnaire”
                 </Link>
+                <p className="text-xs text-muted-foreground/90">
+                <br />
+                  © 2025 Project Juno. All rights reserved. This document is shared for transparency of vision; proprietary technical methods are omitted.
+                </p>
               </footer>
             </div>
           </article>

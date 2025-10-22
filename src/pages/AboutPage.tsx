@@ -1,4 +1,4 @@
-// src/pages/AboutPage.tsx
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -6,7 +6,7 @@ import {
   Sparkles,
   ScrollText,
   FileText,
-  MessageSquare
+  MessageSquare,
 } from 'lucide-react';
 
 import Header from '@/components/Header';
@@ -47,10 +47,10 @@ export default function AboutPage() {
                 id="about-hero"
                 className="text-3xl md:text-5xl font-bold tracking-tight leading-tight"
               >
-                Thoughtful matching, human-checked.
+                Building the next generation of dating systems
               </h1>
               <p className="mt-4 text-muted-foreground text-base md:text-lg">
-                We’re building a <em>gen-2</em> dating experience: Using data for something that is
+                We’re building a <em>gen-3</em> dating experience: Using data for something that is
                 actually valuable to you and your life.
               </p>
 
@@ -91,7 +91,7 @@ export default function AboutPage() {
           {/* === Main column === */}
           <div className="space-y-8">
 
-            {/* About Project Juno (expanded) */}
+            {/* About Project Juno */}
             <Card id="about-juno" className="shadow-md">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
@@ -109,12 +109,10 @@ export default function AboutPage() {
               </CardHeader>
 
               <CardContent className="prose prose-invert max-w-none leading-relaxed text-[0.96rem]">
-                {/* 1️⃣ Opening blockquote for theme */}
                 <blockquote className="border-l-4 pl-4 italic text-muted-foreground">
                   “The next generation of dating systems will optimize for compatibility, not engagement.”
                 </blockquote>
 
-                {/* 2️⃣ Add small heading between idea shifts */}
                 <h3 className="mt-8 text-lg font-semibold text-foreground/90">The Name and the Idea</h3>
                 <p>
                   <em>Project Juno</em> takes its name from Juno, the Roman goddess of marriage and commitment — 
@@ -128,7 +126,6 @@ export default function AboutPage() {
                   habits, communication styles and the thousands of data points that make them unique — instead of reducing them to swipes and photos?
                 </p>
 
-                {/* 3️⃣ Highlight inspiration with subtle box */}
                 <div className="my-6 rounded-xl border border-muted bg-muted/20 p-4">
                   <h4 className="text-sm font-medium text-foreground/90 mb-2">Inspiration</h4>
                   <p className="text-muted-foreground">
@@ -148,7 +145,6 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                {/* 4️⃣ Break long paragraphs with visual separators */}
                 <Separator className="my-8 opacity-40" />
 
                 <h3 className="text-lg font-semibold text-foreground/90">The Philosophy</h3>
@@ -159,9 +155,7 @@ export default function AboutPage() {
                 </p>
 
                 <div className="my-6 border-l-2 pl-4 text-muted-foreground">
-                  <p>
-                    “You can’t guarantee chemistry, but you can improve the odds of it happening.”
-                  </p>
+                  <p>“You can’t guarantee chemistry, but you can improve the odds of it happening.”</p>
                 </div>
 
                 <h3 className="text-lg font-semibold text-foreground/90 mt-10">The Vision Ahead</h3>
@@ -174,9 +168,7 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-
-
-            {/* The Future of Project Juno (Vision / Pillars) */}
+            {/* Future of Project Juno */}
             <Card id="future" className="shadow-md">
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2">
@@ -225,7 +217,7 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-            {/* Roadmap (tactical next steps) */}
+            {/* Roadmap */}
             <Card id="roadmap" className="shadow-md">
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2">
@@ -238,10 +230,7 @@ export default function AboutPage() {
               </CardHeader>
 
               <CardContent className="prose prose-invert max-w-none">
-                <ol
-                  className="relative pl-6 space-y-8 not-prose ![list-style:none]"
-                  role="list"
-                >
+                <ol className="relative pl-6 space-y-8 not-prose ![list-style:none]" role="list">
                   {[
                     {
                       title: "Near term — v0.x foundations",
@@ -273,7 +262,6 @@ export default function AboutPage() {
                     },
                   ].map(({ title, body }, i) => (
                     <li key={i} className="relative pl-6">
-                      {/* ✅ dot perfectly centered with text */}
                       <span
                         className="absolute left-0 top-[0.6em] -translate-y-1/2 h-3 w-3 rounded-full bg-primary"
                         aria-hidden="true"
@@ -283,11 +271,10 @@ export default function AboutPage() {
                     </li>
                   ))}
                 </ol>
-
               </CardContent>
             </Card>
 
-            {/* Building Together (Discord CTA) */}
+            {/* Building Together */}
             <Card id="help" className="shadow-md">
               <CardHeader>
                 <CardTitle>Building Together</CardTitle>
@@ -335,7 +322,7 @@ export default function AboutPage() {
                 </Link>
               </Button>
               <Button asChild variant="ghost">
-                <a href="mailto:hello@projectjuno.app">Email us</a>
+                <a href="mailto:projectjunoapp@gmail.com">Email us</a>
               </Button>
             </div>
           </div>
@@ -351,17 +338,16 @@ export default function AboutPage() {
                 <a className="block hover:underline underline-offset-4" href="#future">
                   The Future of Project Juno
                 </a>
-                <a className="block hover:underline underline-offset-4" href="#help">
-                  Building Together
-                </a>
                 <a className="block hover:underline underline-offset-4" href="#roadmap">
                   Roadmap
+                </a>
+                <a className="block hover:underline underline-offset-4" href="#help">
+                  Building Together
                 </a>
               </nav>
 
               <Separator />
 
-              {/* Small “Why Juno” cards */}
               <div className="grid gap-3">
                 <Card>
                   <CardHeader className="py-3">
