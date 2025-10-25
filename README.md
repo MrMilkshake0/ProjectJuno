@@ -106,7 +106,7 @@ If you’re a:
 You’re welcome to join the conversation.
 
 ### Join the Community
-- 💬 [Discord Invite](https://discord.gg/27WUQkzaSX)
+- 💬 [Discord Invite](https://discord.gg/ZTNRCrVc6j)
 - 📧 [projectjunoapp@gmail.com](mailto:projectjunoapp@gmail.com)
 
 ---
