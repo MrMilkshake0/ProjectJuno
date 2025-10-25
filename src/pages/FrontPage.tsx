@@ -191,7 +191,7 @@ export default function FrontPage() {
 
           <div className="mt-8 max-w-md mx-auto">
             <DiscordInvite
-              inviteUrl="https://discord.gg/27WUQkzaSX"
+              inviteUrl="https://discord.gg/ZTNRCrVc6j"
               serverName="Project Juno Community"
             />
           </div>

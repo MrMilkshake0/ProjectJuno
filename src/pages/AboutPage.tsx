@@ -1,3 +1,4 @@
+// src/pages/AboutPage.tsx
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -299,7 +300,7 @@ export default function AboutPage() {
                 <div className="mt-5 flex flex-wrap gap-3">
                   <Button asChild>
                     <a
-                      href="https://discord.gg/YOUR_INVITE_CODE"
+                      href="https://discord.gg/ZTNRCrVc6j"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Join the Project Juno Discord server"
