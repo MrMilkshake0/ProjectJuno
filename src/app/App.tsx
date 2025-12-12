@@ -4,6 +4,8 @@ import FrontPage from "@/pages/FrontPage";
 import QuestionnairePage from "@/pages/QuestionnairePage";
 import AboutPage from "@/pages/AboutPage";
 import WhitepaperPage from "@/pages/WhitepaperPage";
+import ChatPage from "@/pages/ChatPage";
+import ChatDebugPage from "@/pages/ChatDebugPage";
 import { Toaster } from "sonner";
 
 // ✅ Optional helpers for meta reuse
@@ -31,6 +33,8 @@ export default function App() {
           <Route path="/questionnaire" element={<QuestionnairePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/whitepaper" element={<WhitepaperPage />} />
+          <Route path="/chat" element={<ChatPage />} />
+          <Route path="/debug" element={<ChatDebugPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 

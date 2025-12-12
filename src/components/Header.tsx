@@ -46,6 +46,11 @@ export default function Header() {
             <li>
               <Link to="/questionnaire" className="hover:underline">Questionnaire</Link>
             </li>
+            {user && (
+              <li>
+                <Link to="/chat" className="hover:underline">Chat</Link>
+              </li>
+            )}
             <li>
               <Link to="/about" className="hover:underline">About</Link>
             </li>

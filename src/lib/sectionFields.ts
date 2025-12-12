@@ -14,6 +14,7 @@ export const SECTION_FIELDS: Record<
   ],
 
   demo: () => [
+    'demographics.name',
     'demographics.age',
     'demographics.gender',
     'demographics.location.city',

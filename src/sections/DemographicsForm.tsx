@@ -11,6 +11,8 @@ export default function DemographicsForm() {
   return (
     <SectionCard title="Demographics">
       <div className="grid gap-6">
+        <TextInput name="demographics.name" label="Name" placeholder="Enter your name" />
+        
         <SliderField name="demographics.age" label="Age *" min={18} max={100} step={1} />
 
         <EnumWithOther name="demographics.gender" label="Gender *" options={GENDERS} otherKey='other / self-described' otherTextName='demographics.gender_otherText' />
