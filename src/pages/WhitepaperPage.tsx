@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 
 function H1({ children }: { children: React.ReactNode }) {

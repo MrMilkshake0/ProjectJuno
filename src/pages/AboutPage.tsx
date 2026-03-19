@@ -1,5 +1,4 @@
 // src/pages/AboutPage.tsx
-import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   Sparkles,
