@@ -1,12 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "@/contexts/AuthContext";
 import FrontPage from "@/pages/FrontPage";
-import QuestionnairePage from "@/pages/QuestionnairePage";
 import AboutPage from "@/pages/AboutPage";
 import WhitepaperPage from "@/pages/WhitepaperPage";
 import { Toaster } from "sonner";
 
-// ✅ Optional helpers for meta reuse
 function Canonical({ href }: { href: string }) {
   return <link rel="canonical" href={href} />;
 }
@@ -14,29 +11,24 @@ function Canonical({ href }: { href: string }) {
 export default function App() {
   return (
     <BrowserRouter>
-      {/* Global head elements */}
-      <title>Project Juno</title>
+      <title>Juno — An AI companion that finds your people</title>
       <meta
         name="description"
-        content="A gen-2 matchmaking experience focused on compatibility, not swipes."
+        content="Juno is an AI companion that gets to know you through real conversation — and uses that understanding to find people you'd genuinely click with."
       />
       <meta name="robots" content="index,follow" />
       <meta name="theme-color" content="#0b0b0f" />
       <link rel="icon" href="/favicon.ico" />
       <Canonical href="https://projectjuno.ai/" />
 
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<FrontPage />} />
-          <Route path="/questionnaire" element={<QuestionnairePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/whitepaper" element={<WhitepaperPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<FrontPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/whitepaper" element={<WhitepaperPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
 
-        {/* Global toast notifications */}
-        <Toaster richColors closeButton position="top-right" />
-      </AuthProvider>
+      <Toaster richColors closeButton position="top-right" />
     </BrowserRouter>
   );
 }

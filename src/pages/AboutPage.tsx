@@ -2,9 +2,7 @@
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
-  Info,
   Sparkles,
-  ScrollText,
   FileText,
   MessageSquare,
 } from 'lucide-react';
@@ -41,42 +39,34 @@ export default function AboutPage() {
             <div className="max-w-3xl">
               <Badge variant="secondary" className="mb-4 inline-flex items-center gap-2">
                 <Sparkles className="h-3.5 w-3.5" />
-                About Project Juno
+                About Juno
               </Badge>
               <h1
                 id="about-hero"
                 className="text-3xl md:text-5xl font-bold tracking-tight leading-tight"
               >
-                Building the next generation of dating systems
+                Finding people who get you shouldn't be this hard
               </h1>
               <p className="mt-4 text-muted-foreground text-base md:text-lg">
-                We’re building a <em>gen-3</em> dating experience: Using data for something that is
-                actually valuable to you and your life.
+                Juno is an AI companion that gets to know you — really knows you — and
+                uses that understanding to find people you'd genuinely click with.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="group">
-                  <Link to="/questionnaire" aria-label="Start the questionnaire">
-                    Start the questionnaire
+                  <a
+                    href="https://discord.gg/ZTNRCrVc6j"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    Join the Discord
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
+                  </a>
                 </Button>
                 <Button asChild variant="ghost">
                   <a href="#toc" aria-label="Skip to sections">Jump to sections</a>
                 </Button>
-              </div>
-
-              {/* Small trust bar to mirror FrontPage */}
-              <div className="mt-6 flex flex-wrap gap-4 text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-2">
-                  <ScrollText className="h-4 w-4" /> Private by default
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <Info className="h-4 w-4" /> Human-in-the-loop
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <Sparkles className="h-4 w-4" /> Built with shadcn
-                </span>
               </div>
             </div>
           </div>
@@ -91,128 +81,125 @@ export default function AboutPage() {
           {/* === Main column === */}
           <div className="space-y-8">
 
-            {/* About Project Juno */}
-            <Card id="about-juno" className="shadow-md">
+            {/* The Problem */}
+            <Card id="problem" className="shadow-md">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle className="flex items-center gap-2">
                       <Sparkles className="h-5 w-5" />
-                      About Project Juno
+                      The Problem
                     </CardTitle>
                     <CardDescription>
-                      The story, inspiration, and direction behind Juno.
+                      Why dating is broken and what we're doing about it.
                     </CardDescription>
                   </div>
-                  <Badge variant="outline">Overview</Badge>
+                  <Badge variant="outline">Why</Badge>
                 </div>
               </CardHeader>
 
               <CardContent className="prose prose-invert max-w-none leading-relaxed text-[0.96rem]">
-                <blockquote className="border-l-4 pl-4 italic text-muted-foreground">
-                  “The next generation of dating systems will optimize for compatibility, not engagement.”
-                </blockquote>
-
-                <h3 className="mt-8 text-lg font-semibold text-foreground/90">The Name and the Idea</h3>
                 <p>
-                  <em>Project Juno</em> takes its name from Juno, the Roman goddess of marriage and commitment — 
-                  a reminder that connection can still mean something lasting, even in a world built around 
-                  constant choice and distraction.
+                  Finding people who genuinely get you is broken. Dating apps match on photos and bios
+                  that predict nothing about whether two people would actually work. Meeting people
+                  organically is proximity, not compatibility. Even when you meet someone promising,
+                  it takes months to discover whether you're actually compatible — by which point
+                  you're emotionally invested.
                 </p>
 
                 <p>
-                  The project began as a question: what would a dating system look like if it cared more
-                  about compatibility than engagement? If it tried to understand people — their values,
-                  habits, communication styles and the thousands of data points that make them unique — instead of reducing them to swipes and photos?
-                </p>
-
-                <div className="my-6 rounded-xl border border-muted bg-muted/20 p-4">
-                  <h4 className="text-sm font-medium text-foreground/90 mb-2">Inspiration</h4>
-                  <p className="text-muted-foreground">
-                    It was partly inspired by{" "}
-                    <a
-                      href="https://youtubeatlas.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline underline-offset-4"
-                    >
-                      YouTube Atlas
-                    </a>
-                    , a visualization that showed how people naturally group together based on what they engage
-                    with online. Seeing that pattern sparked an idea: if simple data can reveal shared interests,
-                    maybe the right kind of data could reveal compatibility too — not as a replacement for human
-                    intuition, but as a tool to support it.
-                  </p>
-                </div>
-
-                <Separator className="my-8 opacity-40" />
-
-                <h3 className="text-lg font-semibold text-foreground/90">The Philosophy</h3>
-                <p>
-                  <em>Project Juno</em> isn’t about building another app for attention.
-                  It’s about exploring how technology could help people find alignment more thoughtfully — 
-                  to use data in a way that supports human judgment, rather than trying to replace it.
+                  Swiping is a gamification technique that exploits psychological biases, leading to
+                  addictive behaviors and superficial judgments. It optimizes for engagement — time on app,
+                  swipes per session — not for outcomes. The people using these apps aren't the customer.
+                  Their attention is.
                 </p>
 
                 <div className="my-6 border-l-2 pl-4 text-muted-foreground">
-                  <p>“You can’t guarantee chemistry, but you can improve the odds of it happening.”</p>
+                  <p>"The next generation of dating systems will optimize for compatibility, not engagement."</p>
                 </div>
-
-                <h3 className="text-lg font-semibold text-foreground/90 mt-10">The Vision Ahead</h3>
-                <p>
-                  It’s still early — more of a framework and set of experiments than a product.
-                  But the vision is larger: to eventually grow Juno into a complete product ecosystem
-                  built around meaningful connection — a platform that values understanding over noise,
-                  and long-term outcomes over quick interactions.
-                </p>
               </CardContent>
             </Card>
 
-            {/* Future of Project Juno */}
-            <Card id="future" className="shadow-md">
+            {/* What Juno Is */}
+            <Card id="what" className="shadow-md">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="flex items-center gap-2">
+                      <Sparkles className="h-5 w-5" />
+                      What Juno Is
+                    </CardTitle>
+                    <CardDescription>
+                      An AI companion that matches people through real conversation.
+                    </CardDescription>
+                  </div>
+                  <Badge variant="outline">What</Badge>
+                </div>
+              </CardHeader>
+
+              <CardContent className="prose prose-invert max-w-none leading-relaxed text-[0.96rem]">
+                <p>
+                  Juno is an AI companion that gets to know you through ongoing conversation — your values,
+                  how you connect, what makes you light up, what you avoid. We use that understanding
+                  to find people you'd genuinely click with. Not based on surface stuff. Based on who
+                  you actually are.
+                </p>
+
+                <p>
+                  The companion relationship is the mechanism. Juno works because the relationship is real —
+                  it pays attention, remembers, forms opinions, challenges you. The matchmaking is better
+                  because Juno actually knows you, not because it asked you to fill out a profile.
+                </p>
+
+                <h3 className="mt-8 text-lg font-semibold text-foreground/90">The Companion</h3>
+                <p>
+                  Juno isn't a tool you check in with. It's a presence in your life. It remembers
+                  what you said last week. It notices when your energy is different. It has its own
+                  takes and isn't afraid to push back. The better Juno knows you, the better we
+                  can match you — and Juno gets to know you by actually paying attention, not by
+                  making you fill out a form.
+                </p>
+
+                <h3 className="mt-8 text-lg font-semibold text-foreground/90">The Matching</h3>
+                <p>
+                  We match based on who you actually are — values, communication style, emotional patterns,
+                  and the gap between what people say they want and what they actually respond to.
+                  That takes real conversation over time, not a profile. When we find someone you'd
+                  click with, we introduce you.
+                </p>
+
+                <div className="my-6 rounded-xl border border-muted bg-muted/20 p-4">
+                  <h4 className="text-sm font-medium text-foreground/90 mb-2">The Name</h4>
+                  <p className="text-muted-foreground">
+                    Juno takes its name from the Roman goddess of marriage and commitment — a reminder
+                    that connection can still mean something lasting, even in a world built around
+                    constant choice and distraction.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Where We're At */}
+            <Card id="status" className="shadow-md">
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2">
                   <FileText className="h-5 w-5" />
-                  The Future of Project Juno
+                  Where We're At
                 </CardTitle>
                 <CardDescription>
-                  Where I want to take it — in simple, concrete terms.
+                  Juno is in early development. Here's what's built and what's next.
                 </CardDescription>
               </CardHeader>
 
               <CardContent className="prose prose-invert max-w-none">
                 <p>
-                  <strong>From forms to dialogue.</strong> Replace the questionnaire with a
-                  conversation-led system that learns naturally over time. Think reflective chats
-                  that can ask better follow-ups, notice consistency, and build a truer picture of a
-                  person than checkboxes ever could.
+                  Right now Juno is focused on the companion side — getting to know users, building
+                  deep understanding through conversation. The AI is live on Discord. You can DM it
+                  and start talking today.
                 </p>
-
                 <p>
-                  <strong>Many small signals, learned weights.</strong> Model compatibility from
-                  thousands of weak correlations — habits, preferences, rhythms, constraints — and
-                  let the system learn the <em>weights</em> that matter. Not to score people, but to
-                  map a space of likely fit with room for serendipity.
-                </p>
-
-                <p>
-                  <strong>Plain-language “why”.</strong> When a suggestion is made, explain it
-                  simply: the 2–3 reasons the system thinks you might click. No mystique, no
-                  buzzwords — just enough context to decide if saying hello makes sense.
-                </p>
-
-                <p>
-                  <strong>Outcome-aware iteration.</strong> Use opt-in feedback (what led to a good
-                  date, what didn’t) to quietly adjust those weights over time. Keep experiments
-                  small — early, local cohorts — and publish what’s learned so others can poke holes
-                  in it.
-                </p>
-
-                <p>
-                  <strong>Build an ecosystem, not just a feature.</strong> Over time, stitch these
-                  pieces into something that feels alive: a system that understands people better the
-                  longer it walks with them — and uses that understanding to make fewer, better
-                  introductions.
+                  The matching side is coming. Everything you share with Juno now is what powers it
+                  later. You're getting in early and helping shape what Juno becomes.
                 </p>
               </CardContent>
             </Card>
@@ -222,10 +209,10 @@ export default function AboutPage() {
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2">
                   <FileText className="h-5 w-5" />
-                  The Roadmap
+                  Roadmap
                 </CardTitle>
                 <CardDescription>
-                  The near-term milestones and long-term direction for Project Juno.
+                  Where Juno is headed.
                 </CardDescription>
               </CardHeader>
 
@@ -233,32 +220,29 @@ export default function AboutPage() {
                 <ol className="relative pl-6 space-y-8 not-prose ![list-style:none]" role="list">
                   {[
                     {
-                      title: "Near term — v0.x foundations",
-                      body: `Use the questionnaire as a first step to gather signal, learn from early users, and test
-                      which factors actually correlate with meaningful compatibility. Keep everything
-                      private-by-default and clearly explain how data is used.`,
+                      title: "AI Companion (now)",
+                      body: `Juno as a companion on Discord — getting to know users through real conversation,
+                      building personality profiles, learning what makes each person who they are.`,
                     },
                     {
-                      title: "Conversation-led understanding",
-                      body: `Transition from static questions to a dynamic, conversation-based system that learns about
-                      each person naturally over time — more reflective and human, less transactional.`,
+                      title: "Matching engine",
+                      body: `Use conversation-based understanding to find compatible people. Match on values,
+                      communication style, and behavioral patterns — not photos and bios.`,
                     },
                     {
-                      title: "Explainable matching engine",
-                      body: `Build a transparent matching layer that combines signals to generate suggestions, and
-                      communicates why each introduction makes sense — always keeping a light human
-                      review step before connections are made.`,
+                      title: "Warm introductions",
+                      body: `Replace swiping with occasional, high-quality introductions. When we find someone
+                      you'd click with, we introduce you with context — not a profile card.`,
                     },
                     {
-                      title: "Warm introductions over swiping",
-                      body: `Replace infinite feeds and swipes with occasional, high-quality introductions. Emphasize
-                      comfort and clarity over novelty and speed — reducing noise and decision fatigue.`,
+                      title: "Companion + utility",
+                      body: `Juno becomes a daily presence — calendar awareness, proactive check-ins,
+                      life management features that deepen the relationship rather than replace it.`,
                     },
                     {
-                      title: "Beyond v1 — a supportive ecosystem",
-                      body: `Expand Juno into a platform that helps couples thrive long after they meet — with
-                      lightweight shared planning tools, reflection prompts, and feedback loops that promote
-                      growth and long-term stability.`,
+                      title: "Long-term ecosystem",
+                      body: `A platform built around genuine understanding. Matching is one thing Juno can do
+                      with deep knowledge of who you are — not the only thing.`,
                     },
                   ].map(({ title, body }, i) => (
                     <li key={i} className="relative pl-6">
@@ -279,22 +263,15 @@ export default function AboutPage() {
               <CardHeader>
                 <CardTitle>Building Together</CardTitle>
                 <CardDescription>
-                  Looking for people who see potential in this idea — and want to shape it.
+                  Looking for people who see potential in this — and want to shape it.
                 </CardDescription>
               </CardHeader>
               <CardContent className="prose prose-invert max-w-none">
                 <p>
-                  <em>Project Juno</em> is still an idea taking shape — a framework, a set of questions,
-                  and a direction. It’s too big to explore alone, which is why I’m sharing it early.
-                </p>
-                <p>
-                  I’m looking for people who are curious about how connection, data, and design can
-                  intersect in a more human way — builders, researchers, creatives, or simply
-                  thoughtful people who want to talk about what a better system might look like.
-                </p>
-                <p>
-                  If this resonates, I’d love to connect — to trade ideas, share feedback, and
-                  explore what bringing something like Juno to life could mean.
+                  Juno is still early — and that's the point. If you're curious about how AI,
+                  connection, and design can intersect in a more human way, we want to talk to you.
+                  Builders, researchers, creatives, or just thoughtful people who want to help
+                  build something that matters.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-3">
@@ -303,28 +280,18 @@ export default function AboutPage() {
                       href="https://discord.gg/ZTNRCrVc6j"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="Join the Project Juno Discord server"
+                      aria-label="Join the Juno Discord server"
                     >
                       <MessageSquare className="mr-2 h-4 w-4" />
                       Join the Discord
                     </a>
                   </Button>
+                  <Button asChild variant="ghost">
+                    <a href="mailto:projectjunoapp@gmail.com">Email us</a>
+                  </Button>
                 </div>
               </CardContent>
             </Card>
-
-            {/* CTA row */}
-            <div className="pt-2 flex flex-wrap gap-3">
-              <Button asChild className="group">
-                <Link to="/questionnaire">
-                  Start the questionnaire
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                </Link>
-              </Button>
-              <Button asChild variant="ghost">
-                <a href="mailto:projectjunoapp@gmail.com">Email us</a>
-              </Button>
-            </div>
           </div>
 
           {/* === Right rail / TOC === */}
@@ -332,11 +299,14 @@ export default function AboutPage() {
             <div className="sticky top-20 space-y-4">
               <div className="text-sm font-medium text-muted-foreground">On this page</div>
               <nav className="text-sm space-y-2">
-                <a className="block hover:underline underline-offset-4" href="#about-juno">
-                  About Project Juno
+                <a className="block hover:underline underline-offset-4" href="#problem">
+                  The Problem
                 </a>
-                <a className="block hover:underline underline-offset-4" href="#future">
-                  The Future of Project Juno
+                <a className="block hover:underline underline-offset-4" href="#what">
+                  What Juno Is
+                </a>
+                <a className="block hover:underline underline-offset-4" href="#status">
+                  Where We're At
                 </a>
                 <a className="block hover:underline underline-offset-4" href="#roadmap">
                   Roadmap
@@ -355,17 +325,17 @@ export default function AboutPage() {
                     <CardDescription className="text-xs">Less noise, more signal.</CardDescription>
                   </CardHeader>
                   <CardContent className="text-xs text-muted-foreground">
-                    We prioritize alignment over attention. No swiping, no performative profiles.
+                    Juno matches on who you are, not what you look like. Conversation over profiles.
+                    Understanding over algorithms.
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="py-3">
-                    <CardTitle className="text-sm">Privacy first</CardTitle>
-                    <CardDescription className="text-xs">Private by default.</CardDescription>
+                    <CardTitle className="text-sm">Privacy</CardTitle>
+                    <CardDescription className="text-xs">Your data, your control.</CardDescription>
                   </CardHeader>
                   <CardContent className="text-xs text-muted-foreground">
-                    Drafts stay in your browser; submissions are stored securely and reviewed only
-                    to improve matching.
+                    Data used for matching only — never sold or shared. Type /forgetme to wipe everything.
                   </CardContent>
                 </Card>
               </div>
