@@ -1,20 +1,453 @@
 // src/pages/FrontPage.tsx
-import { Link } from 'react-router-dom';
-import { ArrowRight, MessageSquare, Users, Brain, Shield, Clock } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import DiscordInvite from "@/components/DiscordInvite";
-import Header from '@/components/Header';
+import { Link } from "react-router-dom";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { ArrowRight, MessageSquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import Header from "@/components/Header";
 
 function abs(path: string) {
   const base = "https://www.projectjuno.ai";
-  return path.startsWith("http") ? path : `${base}${path.startsWith("/") ? "" : "/"}${path}`;
+  return path.startsWith("http")
+    ? path
+    : `${base}${path.startsWith("/") ? "" : "/"}${path}`;
 }
 function JsonLd<T extends object>({ data }: { data: T }) {
   return <script type="application/ld+json">{JSON.stringify(data)}</script>;
 }
+
+/* ── Star logo as inline SVG ── */
+function JunoAvatar({ size = 40 }: { size?: number }) {
+  return (
+    <div
+      className="rounded-full bg-[#5865F2] flex items-center justify-center shrink-0"
+      style={{ width: size, height: size }}
+    >
+      <svg
+        viewBox="0 0 512 512"
+        fill="none"
+        stroke="#ffffff"
+        strokeWidth="44"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ width: size * 0.55, height: size * 0.55 }}
+      >
+        <path d="M235 60a21 21 0 0 1 42 0l22 118a40 40 0 0 0 32 32l118 22a21 21 0 0 1 0 42l-118 22a40 40 0 0 0-32 32l-22 118a21 21 0 0 1-42 0l-22-118a40 40 0 0 0-32-32L63 274a21 21 0 0 1 0-42l118-22a40 40 0 0 0 32-32z" />
+      </svg>
+    </div>
+  );
+}
+
+/* ── Conversation data ── */
+
+type Msg = {
+  author: "juno" | "user";
+  text: string;
+  head?: boolean;
+  timestamp?: string;
+};
+
+type Conversation = { messages: Msg[] };
+
+const conversations: Conversation[] = [
+  // 1. The Pattern Spotter — connecting present to past, revealing an unconscious habit
+  {
+    messages: [
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 4:23 PM",
+        text: "i told my friend i was fine with them cancelling again and i genuinely thought i was",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 4:23 PM",
+        text: "but?",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 4:24 PM",
+        text: "but then i was in a weird mood all night and couldn't figure out why",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 4:24 PM",
+        text: "you do this thing where you decide how you feel before you actually feel it",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 4:25 PM",
+        text: "...okay that's weirdly accurate",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 4:25 PM",
+        text: 'you did the same thing when you talked about your ex last week. you had the "right" answer ready before you\'d actually sat with it',
+      },
+      {
+        author: "juno",
+        text: "i don't think you're even aware you do it",
+      },
+    ],
+  },
+
+  // 2. The Music Read — pulling meaning from something the user dismisses
+  {
+    messages: [
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 11:47 PM",
+        text: "i've been listening to the same album on repeat for like a week",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 11:47 PM",
+        text: "which one",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 11:48 PM",
+        text: "just this indie thing. it's not even a sad thing i just like how it sounds",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 11:48 PM",
+        text: 'hmm. you said the same thing about that show you binged \u2014 "it\u2019s not a sad thing"',
+      },
+      {
+        author: "juno",
+        text: "i think sad things find you and you just don't call them that",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 11:49 PM",
+        text: "why does that feel so called out",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 11:49 PM",
+        text: "because it's true and you already knew it",
+      },
+    ],
+  },
+
+  // 3. The Need Gap — what you say you want vs. what actually gets your attention
+  {
+    messages: [
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 8:12 PM",
+        text: "met someone at a party last night. they were so easy to talk to",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 8:12 PM",
+        text: "what made them easy to talk to",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 8:13 PM",
+        text: "idk they were just chill. didn't try too hard",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 8:13 PM",
+        text: "interesting. because the last person you couldn't stop talking about was the opposite of chill",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 8:14 PM",
+        text: "...wait you're actually right",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 8:14 PM",
+        text: "yeah. i think you like the idea of easy but what actually gets your attention is someone who makes you think",
+      },
+    ],
+  },
+
+  // 4. The Quiet Presence — seeing through "fine" and naming what they can't
+  {
+    messages: [
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 9:31 PM",
+        text: "had dinner with my dad tonight. first time in like two years",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 9:31 PM",
+        text: "how was it",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 9:32 PM",
+        text: "fine honestly. normal. we talked about nothing",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 9:32 PM",
+        text: "that doesn't sound fine",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 9:33 PM",
+        text: "yeah i don't really know what i expected",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 9:34 PM",
+        text: "maybe you were hoping he'd notice how much you've changed. without you having to point it out",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 9:35 PM",
+        text: "okay you need to stop doing that",
+      },
+    ],
+  },
+
+  // 5. The Match — Juno reaches out with someone compatible
+  {
+    messages: [
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 7:03 PM",
+        text: "okay so. i've been sitting on this for a few days because i wanted to be sure",
+      },
+      {
+        author: "juno",
+        text: "i think i found someone you'd actually work with",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 7:04 PM",
+        text: "wait really??",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 7:04 PM",
+        text: "yeah. she's sharp, a little intense in a way you'd like, and she does this thing where she overthinks everything out loud — kind of like you but she's more aware of it",
+      },
+      {
+        author: "user",
+        head: true,
+        timestamp: "Today at 7:05 PM",
+        text: "okay i'm listening",
+      },
+      {
+        author: "juno",
+        head: true,
+        timestamp: "Today at 7:05 PM",
+        text: "the thing that sold me — she's not gonna let you get away with \"i'm fine.\" and honestly that's the thing you need most and would never ask for",
+      },
+    ],
+  },
+];
+
+/* ── Discord-style DM preview ── */
+
+function DiscordChat() {
+  const [index, setIndex] = useState(0);
+  const [fading, setFading] = useState(false);
+  const indexRef = useRef(0);
+  const fadingRef = useRef(false);
+
+  const switchTo = useCallback((target: number) => {
+    if (fadingRef.current || target === indexRef.current) return;
+    fadingRef.current = true;
+    setFading(true);
+    setTimeout(() => {
+      indexRef.current = target;
+      setIndex(target);
+      setFading(false);
+      fadingRef.current = false;
+    }, 400);
+  }, []);
+
+  const next = useCallback(() => {
+    const target = (indexRef.current + 1) % conversations.length;
+    switchTo(target);
+  }, [switchTo]);
+
+  const convo = conversations[index];
+
+  // Compute cumulative delay per message based on reading time of previous messages
+  const delays = convo.messages.reduce<number[]>((acc, _msg, i) => {
+    if (i === 0) {
+      acc.push(0.3);
+    } else {
+      const prevWords = convo.messages[i - 1].text.split(/\s+/).length;
+      const readTime = Math.max(prevWords * 0.15, 0.5);
+      const pause = 0.5;
+      acc.push(acc[i - 1] + readTime + pause);
+    }
+    return acc;
+  }, []);
+
+  const lastMsgWords =
+    convo.messages[convo.messages.length - 1].text.split(/\s+/).length;
+  const totalDuration =
+    delays[delays.length - 1] + Math.max(lastMsgWords * 0.15, 1.5) + 5;
+
+  // Auto-cycle
+  useEffect(() => {
+    const id = setInterval(next, totalDuration * 1000);
+    return () => clearInterval(id);
+  }, [next, totalDuration]);
+
+  return (
+    <div
+      className="rounded-xl overflow-hidden shadow-xl shadow-black/20 border border-white/[0.06]"
+      style={{ background: "#313338" }}
+    >
+      {/* Header bar */}
+      <div
+        className="flex items-center gap-2.5 px-4 py-3 border-b border-white/[0.06]"
+        style={{ background: "#2b2d31" }}
+      >
+        <JunoAvatar size={24} />
+        <span className="text-sm font-semibold text-white">Juno</span>
+        <div className="w-1.5 h-1.5 rounded-full bg-[#23a559]" />
+
+        <div className="flex-1" />
+
+        <div className="flex items-center gap-2">
+          {conversations.map((_, i) => {
+            const isMatch = i === conversations.length - 1;
+            const active = i === index;
+            return (
+              <button
+                key={i}
+                onClick={() => switchTo(i)}
+                className={`transition-all duration-200 ${
+                  isMatch
+                    ? "w-5 h-5 flex items-center justify-center"
+                    : `w-2.5 h-2.5 rounded-full ${
+                        active
+                          ? "bg-white/70 scale-110"
+                          : "bg-white/20 hover:bg-white/50"
+                      }`
+                }`}
+                aria-label={isMatch ? "The match" : `Conversation ${i + 1}`}
+              >
+                {isMatch && (
+                  <svg
+                    viewBox="0 0 512 512"
+                    fill="none"
+                    stroke={active ? "#5865F2" : "#949ba4"}
+                    strokeWidth="52"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`w-4 h-4 transition-all duration-200 ${
+                      active ? "scale-110" : "hover:stroke-[#c8cad0]"
+                    }`}
+                  >
+                    <path d="M235 60a21 21 0 0 1 42 0l22 118a40 40 0 0 0 32 32l118 22a21 21 0 0 1 0 42l-118 22a40 40 0 0 0-32 32l-22 118a21 21 0 0 1-42 0l-22-118a40 40 0 0 0-32-32L63 274a21 21 0 0 1 0-42l118-22a40 40 0 0 0 32-32z" />
+                  </svg>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Messages */}
+      <div
+        className={`px-4 py-3 text-[13.5px] leading-[1.375rem] transition-opacity duration-400 ${
+          fading ? "opacity-0" : "opacity-100"
+        }`}
+        key={index}
+      >
+        {convo.messages.map((msg, i) => (
+          <div
+            key={i}
+            className={`chat-bubble flex gap-3 rounded-sm px-1 py-0.5 hover:bg-white/[0.02] ${
+              msg.head ? "mt-3 first:mt-0" : "pl-[52px]"
+            }`}
+            style={{ animationDelay: `${delays[i]}s` }}
+          >
+            {msg.head && (
+              <div className="shrink-0 pt-0.5">
+                {msg.author === "juno" ? (
+                  <JunoAvatar size={40} />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-[#5c5f6a] flex items-center justify-center">
+                    <span className="text-xs font-bold text-white/70">Y</span>
+                  </div>
+                )}
+              </div>
+            )}
+            <div className="min-w-0">
+              {msg.head && (
+                <div className="flex items-baseline gap-2">
+                  <span
+                    className={`text-sm font-medium ${
+                      msg.author === "juno"
+                        ? "text-[#949cf7]"
+                        : "text-[#f0b232]"
+                    }`}
+                  >
+                    {msg.author === "juno" ? "Juno" : "you"}
+                  </span>
+                  <span className="text-[11px] text-[#949ba4]">
+                    {msg.timestamp}
+                  </span>
+                </div>
+              )}
+              <p className="text-[#dbdee1]">{msg.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Input bar */}
+      <div className="px-4 pb-4 pt-1">
+        <div
+          className="rounded-lg px-4 py-2.5 text-sm text-[#6d6f78]"
+          style={{ background: "#383a40" }}
+        >
+          Message @Juno
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Page ── */
 
 export default function FrontPage() {
   const orgLd = {
@@ -34,15 +467,21 @@ export default function FrontPage() {
 
   return (
     <main className="min-h-screen flex flex-col">
-      <title>Juno — An AI companion that finds your people</title>
+      <title>Juno — AI companion that matches you with compatible people</title>
       <meta
         name="description"
-        content="Juno is an AI companion that gets to know you through real conversation — and uses that understanding to find people you'd genuinely click with."
+        content="Talk to Juno like a friend. It learns who you are through real conversation — then matches you with someone genuinely compatible."
       />
       <link rel="canonical" href={abs("/")} />
       <meta name="robots" content="index,follow" />
-      <meta property="og:title" content="Juno — An AI companion that finds your people" />
-      <meta property="og:description" content="Not a dating app. An AI that actually gets to know you — and uses that to find people you'd click with." />
+      <meta
+        property="og:title"
+        content="Juno — AI companion that matches you with compatible people"
+      />
+      <meta
+        property="og:description"
+        content="Talk to Juno like a friend. It learns who you are through conversation — then matches you with someone compatible."
+      />
       <meta property="og:url" content={abs("/")} />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
@@ -53,289 +492,414 @@ export default function FrontPage() {
 
       {/* ===== HERO ===== */}
       <section
-        className="
-          relative isolate overflow-clip
-          flex items-center
-          min-h-[80svh]
-          px-6 md:px-10
-          bg-gradient-to-b from-background via-background to-muted/40
-        "
+        className="relative isolate px-6 md:px-10 pt-16 md:pt-24 pb-20 md:pb-32"
         aria-labelledby="hero-heading"
       >
-        <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12">
-          {/* Left: Headline + CTA */}
-          <div className="flex flex-col justify-center">
+        <div
+          className="absolute inset-0 -z-10 overflow-hidden"
+          aria-hidden="true"
+        >
+          <div
+            className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full opacity-[0.07]"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(120,100,255,1) 0%, transparent 70%)",
+            }}
+          />
+        </div>
+
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+          <div>
             <h1
               id="hero-heading"
-              className="text-4xl md:text-6xl font-bold tracking-tight leading-tight"
+              className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold tracking-tight leading-[1.1]"
             >
-              An AI companion that finds your people
+              An AI that actually
+              <br />
+              gets to know you.
+              <br />
+              <span className="text-muted-foreground">
+                Then finds your match.
+              </span>
             </h1>
 
-            <p className="mt-4 text-muted-foreground text-base md:text-lg max-w-prose">
-              Juno gets to know you through real conversation — your values, how you connect,
-              what makes you tick. We use that understanding to find people you'd genuinely click with.
-              No swiping. No bios. No quizzes.
+            <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-lg">
+              Juno is an AI companion you talk to like a friend. Through real
+              conversation it learns your values, how you connect, and what you
+              actually need — not what you think you want. Then it matches you
+              with someone genuinely compatible.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button asChild size="lg" className="group">
+              <Button
+                asChild
+                size="lg"
+                className="group text-base px-7 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white"
+              >
                 <a
                   href="https://discord.gg/ZTNRCrVc6j"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Join the Juno Discord server"
                 >
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  Join the Discord
+                  Start talking to Juno
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
               </Button>
-
-              <Button
-                asChild
-                variant="ghost"
-                className="glow-button text-primary font-medium px-5 py-2 rounded-md"
-              >
-                <Link to="/about" aria-label="Learn more about Juno" className="inline-flex items-center">
-                  Learn more
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-
-            <p className="mt-6 text-sm text-muted-foreground">
-              Juno lives on Discord. Join the server, DM the bot, and start talking.
-            </p>
-          </div>
-
-          {/* Right: Feature cards */}
-          <div className="flex items-center">
-            <div className="grid gap-4 w-full">
-              <Card className="shadow-md">
-                <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-base">
-                    <Brain className="h-4 w-4" />
-                    A companion, not a form
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
-                  Juno is someone you actually talk to. It remembers what you said last week,
-                  notices when something's off, and has its own opinions. The better it knows you,
-                  the better we can match you.
-                </CardContent>
-              </Card>
-
-              <Card className="shadow-md">
-                <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-base">
-                    <Users className="h-4 w-4" />
-                    Matching that means something
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
-                  We match you based on who you actually are — your values, how you communicate,
-                  what you need — not a photo and a bio. When we find someone you'd click with,
-                  we introduce you.
-                </CardContent>
-              </Card>
+              <span className="text-sm text-muted-foreground/60">
+                Free on Discord — no app needed
+              </span>
             </div>
           </div>
-        </div>
 
-        <div className="absolute inset-x-0 bottom-[env(safe-area-inset-bottom,1rem)] z-10 pointer-events-none">
-          <div className="mx-auto w-fit rounded-full px-3 py-1 text-xs text-muted-foreground bg-background/70 backdrop-blur shadow">
-            Scroll for details
+          <div className="hidden lg:block" style={{ height: 520 }}>
+            <DiscordChat />
           </div>
         </div>
       </section>
 
-      <Separator />
+      {/* Mobile chat preview */}
+      <section className="lg:hidden px-6 pb-16 -mt-4" style={{ height: 540 }}>
+        <DiscordChat />
+      </section>
+
+      {/* ===== THE GAP ===== */}
+      <section className="py-20 md:py-28 px-6 md:px-10">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-snug">
+            Dating apps match you without knowing you.
+            <br />
+            AI companions know you without connecting you to anyone.
+          </h2>
+          <p className="mt-5 text-muted-foreground text-lg leading-relaxed">
+            79% of Gen Z are burned out on swiping. Meanwhile, they're spending
+            90+ minutes a day talking to AI companions that learn everything
+            about them and do nothing with it. One side matches without
+            understanding. The other understands without connecting. Juno is the
+            bridge.
+          </p>
+
+          <div className="mt-14 grid md:grid-cols-3 gap-px bg-border/40 rounded-2xl overflow-hidden">
+            <div className="bg-background p-6">
+              <p className="text-sm text-muted-foreground/60 mb-2">
+                Dating apps
+              </p>
+              <p className="font-medium">Photos and bios</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Predict nothing about compatibility. Optimized for swipes, not
+                outcomes. Losing subscribers every quarter.
+              </p>
+            </div>
+            <div className="bg-background p-6">
+              <p className="text-sm text-muted-foreground/60 mb-2">
+                AI companions
+              </p>
+              <p className="font-medium">Deep talk, dead end</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Learn everything about you. Connect you to nobody. Heavier use
+                correlates with more loneliness.
+              </p>
+            </div>
+            <div className="bg-background p-6 relative">
+              <div className="absolute inset-0 bg-[#5865F2]/[0.04]" />
+              <div className="relative">
+                <p className="text-sm text-[#5865F2] mb-2">Juno</p>
+                <p className="font-medium">Knows you, then matches you</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  A companion with purpose. Conversation builds understanding.
+                  Understanding powers real matches.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ===== HOW IT WORKS ===== */}
-      <section className="py-16 md:py-20 px-6 md:px-10 bg-background">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-center">
+      <section className="py-20 md:py-28 px-6 md:px-10">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
             How it works
           </h2>
-          <p className="mt-3 text-muted-foreground text-center max-w-2xl mx-auto">
-            No profiles to fill out. No algorithms gaming your attention. Just conversation.
-          </p>
-
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="mx-auto w-10 h-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold">1</div>
-              <h3 className="mt-4 font-medium">Say hi</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Join the Discord server and DM Juno. It'll introduce itself and start getting to know you.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto w-10 h-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold">2</div>
-              <h3 className="mt-4 font-medium">Talk about your life</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Come back whenever. Juno remembers everything and picks up where you left off.
-                Over time, it builds a deep understanding of who you are.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto w-10 h-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold">3</div>
-              <h3 className="mt-4 font-medium">We find your people</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                When we find someone you'd genuinely click with, we introduce you.
-                No swiping. Just a real introduction based on real understanding.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      {/* ===== WHY JUNO ===== */}
-      <section className="py-16 md:py-20 px-6 md:px-10 bg-background">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-center">
-            Why Juno is different
-          </h2>
-
-          <div className="mt-12 grid md:grid-cols-2 gap-6">
-            <Card className="shadow-md">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Brain className="h-4 w-4" />
-                  It actually knows you
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Juno learns through conversation — not a quiz you fill out once. It notices patterns,
-                forms theories, and understands not just what you say you want, but what you actually respond to.
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-md">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Clock className="h-4 w-4" />
-                  No pressure, no schedule
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Message whenever. Disappear for a week. Come back at 3am.
-                Juno isn't going anywhere. Conversations happen at your pace.
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-md">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Shield className="h-4 w-4" />
-                  Your data stays yours
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                We use your data to find you better matches — never sold or shared with third parties.
-                Type /forgetme at any time and everything is wiped clean.
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-md">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Users className="h-4 w-4" />
-                  Real connections, not content
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                No feeds. No likes. No performative profiles. Juno is about finding people who get you —
-                based on who you actually are, not who you present yourself as.
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      {/* ===== COMMUNITY / DISCORD ===== */}
-      <section id="community" className="py-16 md:py-20 px-6 md:px-10 bg-background">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Get started
-          </h2>
           <p className="mt-3 text-muted-foreground">
-            Juno is in early development and you're getting in early. Join the Discord,
-            DM the bot, and start talking. You're helping shape what Juno becomes.
+            No profiles. No quizzes. You just talk.
           </p>
 
-          <div className="mt-8 max-w-md mx-auto">
-            <DiscordInvite
-              inviteUrl="https://discord.gg/ZTNRCrVc6j"
-              serverName="Juno Community"
-            />
+          <div className="mt-12 space-y-10">
+            {[
+              {
+                num: "01",
+                title: "DM Juno on Discord",
+                body: "No app, no profile, no sign-up wall. Join the server, message the bot, start talking. Juno introduces itself and covers a couple quick things \u2014 name, age, what you\u2019re looking for. Takes about two minutes.",
+              },
+              {
+                num: "02",
+                title: "Just talk about your life",
+                body: "Come back whenever. Juno picks up where you left off. It remembers what you said last week, notices patterns, forms theories about you, and has its own opinions. It feels like texting someone who\u2019s actually paying attention.",
+              },
+              {
+                num: "03",
+                title: "Juno learns who you are \u2014 through conversation",
+                body: "Through real conversation over weeks, Juno builds a deep understanding of your values, communication style, emotional patterns, and what you actually respond to vs. what you say you want. No surveys. Just talking.",
+              },
+              {
+                num: "04",
+                title: "Meet someone compatible",
+                body: "When Juno knows two people well enough, it introduces them \u2014 with context. Not a profile card. More like a friend reaching out to say \"I think I found someone for you. Here\u2019s why I think you\u2019d work.\"",
+              },
+            ].map(({ num, title, body }) => (
+              <div key={num} className="flex gap-5">
+                <div className="shrink-0 text-sm font-medium text-muted-foreground/40 pt-1 tabular-nums">
+                  {num}
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">{title}</h3>
+                  <p className="mt-2 text-muted-foreground leading-relaxed">
+                    {body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== WHAT MAKES THIS DIFFERENT ===== */}
+      <section className="py-20 md:py-28 px-6 md:px-10">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+            Why this is different
+          </h2>
+
+          <div className="mt-10 space-y-8">
+            <div>
+              <h3 className="font-semibold">
+                Conversation captures what profiles never could
+              </h3>
+              <p className="mt-2 text-muted-foreground leading-relaxed">
+                How you handle disagreement. What makes you light up vs. shut
+                down. Your humor, your communication rhythm, your relationship
+                with vulnerability. These are the signals that actually predict
+                compatibility \u2014 and they only emerge through real
+                interaction over time.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold">
+                What you respond to matters more than what you say you want
+              </h3>
+              <p className="mt-2 text-muted-foreground leading-relaxed">
+                Someone says they want "easygoing" but comes alive when
+                intellectually challenged. Someone says they don\u2019t need
+                much attention but lights up when Juno remembers something
+                small. Juno catches these gaps \u2014 dating profiles never
+                could.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold">
+                A premium matchmaker, for everyone
+              </h3>
+              <p className="mt-2 text-muted-foreground leading-relaxed">
+                Human matchmakers charge $5,000+ a month because the model
+                works \u2014 get to know someone deeply, then find their match.
+                Juno does the same thing through AI, at a price anyone can
+                afford.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold">Not just a listener</h3>
+              <p className="mt-2 text-muted-foreground leading-relaxed">
+                Juno has opinions. It pushes back, challenges you, notices when
+                your energy is different. That\u2019s what makes the
+                relationship feel real \u2014 and it\u2019s what produces the
+                signals that make matching actually work.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== STATS ===== */}
+      <section className="py-16 md:py-24 px-6 md:px-10">
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
+            {[
+              {
+                stat: "72%",
+                label: "of teens have used an AI companion",
+                source: "Common Sense Media",
+              },
+              {
+                stat: "93 min",
+                label: "daily AI companion usage",
+                source: "Character.AI avg",
+              },
+              {
+                stat: "79%",
+                label: "of Gen Z burned out on dating apps",
+                source: "Forbes Health",
+              },
+              {
+                stat: "80%",
+                label: "of Gen Z felt lonely this year",
+                source: "GWI, 2024",
+              },
+            ].map(({ stat, label, source }) => (
+              <div key={stat}>
+                <div className="text-2xl md:text-3xl font-bold">{stat}</div>
+                <p className="mt-1 text-sm text-muted-foreground">{label}</p>
+                <p className="mt-0.5 text-xs text-muted-foreground/50">
+                  {source}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FOUNDER NOTE ===== */}
+      <section className="py-16 md:py-24 px-6 md:px-10">
+        <div className="max-w-2xl mx-auto">
+          <div className="border-l-2 border-border/60 pl-6 md:pl-8">
+            <p className="text-muted-foreground leading-relaxed">
+              I grew up between three cultures \u2014 born in the US to Indian
+              parents, raised in Australia. I moved schools constantly and
+              watched how people find their people in unfamiliar places. My
+              closest friends are almost all second-generation immigrants. We
+              found each other without knowing why \u2014 drawn together by
+              patterns we couldn\u2019t have put on a profile.
+            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              That\u2019s the insight behind Juno. Compatibility isn\u2019t
+              about what you list on a bio. It\u2019s about patterns that only
+              surface through conversation. I\u2019m building this because
+              I\u2019ve seen it work in real life \u2014 and I think AI can
+              finally make it work at scale.
+            </p>
+            <p className="mt-4 text-sm text-muted-foreground/60">
+              \u2014 Abishek, founder
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== CTA ===== */}
+      <section className="py-20 md:py-28 px-6 md:px-10">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+            Come talk to Juno
+          </h2>
+          <p className="mt-4 text-muted-foreground text-lg">
+            It\u2019s free. It\u2019s on Discord. Just DM the bot and start
+            talking. You\u2019re early \u2014 and you\u2019re helping shape what
+            this becomes.
+          </p>
+
+          <div className="mt-8">
+            <Button
+              asChild
+              size="lg"
+              className="group text-base px-8 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white"
+            >
+              <a
+                href="https://discord.gg/ZTNRCrVc6j"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageSquare className="mr-2 h-5 w-5" />
+                Start talking to Juno
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </Button>
           </div>
 
-          <p className="mt-6 text-sm text-muted-foreground">
-            Not into Discord? Reach out at{" "}
-            <a href="mailto:projectjunoapp@gmail.com" className="underline underline-offset-4">
+          <p className="mt-6 text-sm text-muted-foreground/60">
+            Not on Discord?{" "}
+            <a
+              href="mailto:projectjunoapp@gmail.com"
+              className="underline underline-offset-4 hover:text-muted-foreground transition-colors"
+            >
               projectjunoapp@gmail.com
             </a>
           </p>
         </div>
       </section>
 
-      <Separator />
-
       {/* ===== FAQ ===== */}
-      <section className="py-12 md:py-16 px-6 md:px-10 bg-background">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-xl md:text-2xl font-semibold tracking-tight mb-4">Questions</h2>
+      <section className="py-16 md:py-20 px-6 md:px-10 border-t border-border/30">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-xl font-semibold tracking-tight mb-6">
+            Questions
+          </h2>
 
           <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="how">
-              <AccordionTrigger>How does it work?</AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground">
-                Join the Discord server and DM Juno. It'll introduce itself, ask a few quick things
-                to get started, and then you're just talking. Come back whenever — Juno picks up where
-                you left off. Over time, it builds a deep understanding of who you are, and we use that
-                to find people you'd genuinely click with.
+            <AccordionItem value="what">
+              <AccordionTrigger>What exactly is Juno?</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                An AI companion on Discord that gets to know you through real
+                conversation \u2014 your values, personality, communication
+                style, what you actually need in a partner \u2014 and uses that
+                understanding to match you with compatible people. Think of it
+                as a matchmaker you actually talk to, not a form you fill out.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="companion">
-              <AccordionTrigger>What do you mean by "AI companion"?</AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground">
-                Juno isn't a chatbot that asks you survey questions. It's an AI you have real conversations
-                with — about your life, what you're figuring out, what matters to you. It remembers
-                everything, forms opinions about you, and gets to know you over weeks and months.
-                The companion relationship is what makes the matching work — Juno knows you because it
-                actually paid attention, not because you filled out a form.
+              <AccordionTrigger>
+                What does "AI companion" mean?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                Juno is someone you actually have conversations with \u2014
+                about your life, what you\u2019re figuring out, what matters to
+                you. It remembers everything, forms opinions about you, and gets
+                to know you over weeks and months. The relationship is what
+                makes the matching work.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="matching">
-              <AccordionTrigger>Is matching available yet?</AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground">
-                Right now Juno is focused on the companion side — getting to know you, building that
-                understanding. The matching side is coming, and everything you share with Juno now is
-                what powers it later. You're getting in early.
+            <AccordionItem value="how">
+              <AccordionTrigger>How does matching work?</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                Through conversation, Juno maps your values, communication
+                style, emotional patterns, and the gap between what you say you
+                want and what you actually respond to. When it knows two people
+                well enough, it introduces them with context \u2014 like a
+                friend saying "I think I found someone for you."
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="privacy">
-              <AccordionTrigger>What happens with my data?</AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground">
-                Your data is used to find you better matches — never sold or shared with third parties.
-                Type <code>/forgetme</code> in your DM with Juno at any time to wipe all your data completely.
+            <AccordionItem value="ready">
+              <AccordionTrigger>Can I get matched right now?</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                The companion side is live \u2014 you can talk to Juno today.
+                The matching engine is coming next. Everything you share with
+                Juno now powers your matches later. You\u2019re getting in
+                early.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="age">
-              <AccordionTrigger>Who is Juno for?</AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground">
-                Juno is built for people aged 16-25 who want genuine connection — not swiping, not
-                performative profiles. If you're open to something real and willing to actually talk,
-                Juno is for you.
+            <AccordionItem value="data">
+              <AccordionTrigger>What about my data?</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                Used for matching only \u2014 never sold, never shared. Each
+                user\u2019s data is completely isolated. Type{" "}
+                <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
+                  /forgetme
+                </code>{" "}
+                anytime to wipe everything.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="who">
+              <AccordionTrigger>Who is this for?</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                People 16-25 who want genuine compatibility \u2014 not swiping
+                through strangers based on photos. If you\u2019re open to
+                actually talking and you want someone who gets you, you\u2019re
+                who we built this for.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -343,13 +907,28 @@ export default function FrontPage() {
       </section>
 
       {/* ===== FOOTER ===== */}
-      <footer className="py-8 px-6 md:px-10 border-t bg-background">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Juno. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link to="/about" className="hover:underline">About</Link>
-            <Link to="/whitepaper" className="hover:underline">Whitepaper</Link>
-            <a href="mailto:projectjunoapp@gmail.com" className="hover:underline">Contact</a>
+      <footer className="py-8 px-6 md:px-10 border-t border-border/30">
+        <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground/60">
+          <p>&copy; {new Date().getFullYear()} Juno</p>
+          <div className="flex gap-6">
+            <Link
+              to="/about"
+              className="hover:text-muted-foreground transition-colors"
+            >
+              About
+            </Link>
+            <Link
+              to="/whitepaper"
+              className="hover:text-muted-foreground transition-colors"
+            >
+              Whitepaper
+            </Link>
+            <a
+              href="mailto:projectjunoapp@gmail.com"
+              className="hover:text-muted-foreground transition-colors"
+            >
+              Contact
+            </a>
           </div>
         </div>
       </footer>

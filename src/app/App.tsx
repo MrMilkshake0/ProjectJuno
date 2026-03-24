@@ -11,13 +11,13 @@ function Canonical({ href }: { href: string }) {
 export default function App() {
   return (
     <BrowserRouter>
-      <title>Juno — An AI companion that finds your people</title>
+      <title>Juno — an AI that gets to know you, then finds your match</title>
       <meta
         name="description"
-        content="Juno is an AI companion that gets to know you through real conversation — and uses that understanding to find people you'd genuinely click with."
+        content="Juno is an AI companion you talk to like a friend. It learns who you are through real conversation — then matches you with someone genuinely compatible."
       />
       <meta name="robots" content="index,follow" />
-      <meta name="theme-color" content="#0b0b0f" />
+      <meta name="theme-color" content="#1a1625" />
       <link rel="icon" href="/favicon.ico" />
       <Canonical href="https://projectjuno.ai/" />
 

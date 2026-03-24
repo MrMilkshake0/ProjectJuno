@@ -1,7 +1,7 @@
 // src/components/Header.tsx
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Header() {
   return (
@@ -9,47 +9,57 @@ export default function Header() {
       role="banner"
       className="
         sticky top-0 z-40 w-full
-        border-b bg-background/80 backdrop-blur
+        border-b border-border/30 bg-background/80 backdrop-blur-md
         supports-[backdrop-filter]:bg-background/60
       "
     >
-      <div className="mx-auto max-w-6xl px-6 md:px-10 h-14 flex items-center">
-        {/* Left: Logo */}
+      <div className="mx-auto max-w-3xl px-6 md:px-10 h-14 flex items-center">
+        {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-2 font-semibold hover:opacity-90 transition-opacity"
+          className="font-semibold tracking-tight text-foreground/90 hover:text-foreground transition-colors"
           aria-label="Go to front page"
         >
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-md border">
-            <Sparkles className="h-3.5 w-3.5" />
-          </span>
-          <span className="text-sm md:text-base tracking-tight">Juno</span>
+          Juno
         </Link>
 
-        {/* Middle: nav */}
-        <nav className="ml-6 hidden sm:block">
-          <ul className="flex items-center gap-4 text-sm">
+        {/* Nav */}
+        <nav className="ml-8 hidden sm:block">
+          <ul className="flex items-center gap-5 text-sm text-muted-foreground/70">
             <li>
-              <Link to="/about" className="hover:underline">About</Link>
+              <Link
+                to="/about"
+                className="hover:text-foreground transition-colors"
+              >
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/whitepaper" className="hover:underline">Whitepaper</Link>
+              <Link
+                to="/whitepaper"
+                className="hover:text-foreground transition-colors"
+              >
+                Whitepaper
+              </Link>
             </li>
           </ul>
         </nav>
 
-        {/* Spacer */}
         <div className="flex-1" />
 
-        {/* Right: Discord CTA */}
-        <Button asChild size="sm">
+        {/* CTA */}
+        <Button
+          asChild
+          size="sm"
+          className="rounded-lg bg-[#5865F2] hover:bg-[#4752c4] text-white text-xs group"
+        >
           <a
             href="https://discord.gg/ZTNRCrVc6j"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Join the Juno Discord server"
           >
-            Join Discord
+            Talk to Juno
+            <ArrowRight className="ml-1.5 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
           </a>
         </Button>
       </div>
