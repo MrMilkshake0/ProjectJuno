@@ -512,7 +512,7 @@ export default function FrontPage() {
           <div>
             <h1
               id="hero-heading"
-              className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold tracking-tight leading-[1.1]"
+              className="text-3xl sm:text-5xl md:text-[3.5rem] font-bold tracking-tight leading-[1.1]"
             >
               An AI that actually
               <br />
@@ -551,23 +551,23 @@ export default function FrontPage() {
             </div>
           </div>
 
-          <div className="hidden lg:block" style={{ height: 520 }}>
+          <div className="hidden lg:block">
             <DiscordChat />
           </div>
         </div>
       </section>
 
       {/* Mobile chat preview */}
-      <section className="lg:hidden px-6 pb-16 -mt-4" style={{ height: 540 }}>
+      <section className="lg:hidden px-6 pb-8 -mt-4">
         <DiscordChat />
       </section>
 
       {/* ===== THE GAP ===== */}
       <section className="py-20 md:py-28 px-6 md:px-10">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-snug">
-            Dating apps match you without knowing you.
-            <br />
+          <h2 className="text-xl md:text-3xl font-bold tracking-tight leading-snug">
+            Dating apps match you without knowing you.{" "}
+            <br className="hidden md:block" />
             AI companions know you without connecting you to anyone.
           </h2>
 

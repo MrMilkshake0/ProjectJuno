@@ -13,9 +13,9 @@ export default function AboutPage() {
       {/* ===== HERO ===== */}
       <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
-            An AI companion that matches you
-            <br />
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+            An AI companion that matches you{" "}
+            <br className="hidden sm:block" />
             with compatible people.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
@@ -90,7 +90,7 @@ export default function AboutPage() {
 
           {/* Comparison table */}
           <div className="mt-10 overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
+            <table className="w-full min-w-[480px] text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border/40">
                   <th className="text-left py-3 pr-4 font-medium text-muted-foreground/60 w-[35%]" />
