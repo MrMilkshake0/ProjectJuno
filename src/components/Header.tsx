@@ -1,9 +1,17 @@
 // src/components/Header.tsx
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
+const navLinks = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/whitepaper", label: "Whitepaper" },
+];
+
 export default function Header() {
+  const { pathname } = useLocation();
+
   return (
     <header
       role="banner"
@@ -25,23 +33,24 @@ export default function Header() {
 
         {/* Nav */}
         <nav className="ml-8 hidden sm:block">
-          <ul className="flex items-center gap-5 text-sm text-muted-foreground/70">
-            <li>
-              <Link
-                to="/about"
-                className="hover:text-foreground transition-colors"
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/whitepaper"
-                className="hover:text-foreground transition-colors"
-              >
-                Whitepaper
-              </Link>
-            </li>
+          <ul className="flex items-center gap-1 text-sm">
+            {navLinks.map(({ to, label }) => {
+              const active = pathname === to;
+              return (
+                <li key={to}>
+                  <Link
+                    to={to}
+                    className={`px-3 py-1.5 rounded-md transition-colors ${
+                      active
+                        ? "text-foreground bg-white/[0.08]"
+                        : "text-muted-foreground/70 hover:text-foreground hover:bg-white/[0.04]"
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

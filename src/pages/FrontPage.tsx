@@ -126,7 +126,7 @@ const conversations: Conversation[] = [
         author: "juno",
         head: true,
         timestamp: "Today at 11:48 PM",
-        text: 'hmm. you said the same thing about that show you binged \u2014 "it\u2019s not a sad thing"',
+        text: 'hmm. you said the same thing about that show you binged — "it’s not a sad thing"',
       },
       {
         author: "juno",
@@ -570,13 +570,6 @@ export default function FrontPage() {
             <br />
             AI companions know you without connecting you to anyone.
           </h2>
-          <p className="mt-5 text-muted-foreground text-lg leading-relaxed">
-            79% of Gen Z are burned out on swiping. Meanwhile, they're spending
-            90+ minutes a day talking to AI companions that learn everything
-            about them and do nothing with it. One side matches without
-            understanding. The other understands without connecting. Juno is the
-            bridge.
-          </p>
 
           <div className="mt-14 grid md:grid-cols-3 gap-px bg-border/40 rounded-2xl overflow-hidden">
             <div className="bg-background p-6">
@@ -585,8 +578,8 @@ export default function FrontPage() {
               </p>
               <p className="font-medium">Photos and bios</p>
               <p className="mt-2 text-sm text-muted-foreground">
-                Predict nothing about compatibility. Optimized for swipes, not
-                outcomes. Losing subscribers every quarter.
+                79% of Gen Z burned out on swiping. Predict nothing about
+                compatibility. Losing subscribers every quarter.
               </p>
             </div>
             <div className="bg-background p-6">
@@ -595,8 +588,8 @@ export default function FrontPage() {
               </p>
               <p className="font-medium">Deep talk, dead end</p>
               <p className="mt-2 text-sm text-muted-foreground">
-                Learn everything about you. Connect you to nobody. Heavier use
-                correlates with more loneliness.
+                93 min/day average usage. Learn everything about you. Connect
+                you to nobody.
               </p>
             </div>
             <div className="bg-background p-6 relative">
@@ -629,22 +622,22 @@ export default function FrontPage() {
               {
                 num: "01",
                 title: "DM Juno on Discord",
-                body: "No app, no profile, no sign-up wall. Join the server, message the bot, start talking. Juno introduces itself and covers a couple quick things \u2014 name, age, what you\u2019re looking for. Takes about two minutes.",
+                body: "No app, no profile, no sign-up wall. Join the server, message the bot, start talking. Juno introduces itself and covers a couple quick things — name, age, what you’re looking for. Takes about two minutes.",
               },
               {
                 num: "02",
                 title: "Just talk about your life",
-                body: "Come back whenever. Juno picks up where you left off. It remembers what you said last week, notices patterns, forms theories about you, and has its own opinions. It feels like texting someone who\u2019s actually paying attention.",
+                body: "Come back whenever. Juno picks up where you left off. It remembers what you said last week, notices patterns, forms theories about you, and has its own opinions. It feels like texting someone who’s actually paying attention.",
               },
               {
                 num: "03",
-                title: "Juno learns who you are \u2014 through conversation",
+                title: "Juno learns who you are — through conversation",
                 body: "Through real conversation over weeks, Juno builds a deep understanding of your values, communication style, emotional patterns, and what you actually respond to vs. what you say you want. No surveys. Just talking.",
               },
               {
                 num: "04",
                 title: "Meet someone compatible",
-                body: "When Juno knows two people well enough, it introduces them \u2014 with context. Not a profile card. More like a friend reaching out to say \"I think I found someone for you. Here\u2019s why I think you\u2019d work.\"",
+                body: "When Juno knows two people well enough, it introduces them — with context. Not a profile card. More like a friend reaching out to say \"I think I found someone for you. Here’s why I think you’d work.\"",
               },
             ].map(({ num, title, body }) => (
               <div key={num} className="flex gap-5">
@@ -663,129 +656,6 @@ export default function FrontPage() {
         </div>
       </section>
 
-      {/* ===== WHAT MAKES THIS DIFFERENT ===== */}
-      <section className="py-20 md:py-28 px-6 md:px-10">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-            Why this is different
-          </h2>
-
-          <div className="mt-10 space-y-8">
-            <div>
-              <h3 className="font-semibold">
-                Conversation captures what profiles never could
-              </h3>
-              <p className="mt-2 text-muted-foreground leading-relaxed">
-                How you handle disagreement. What makes you light up vs. shut
-                down. Your humor, your communication rhythm, your relationship
-                with vulnerability. These are the signals that actually predict
-                compatibility \u2014 and they only emerge through real
-                interaction over time.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold">
-                What you respond to matters more than what you say you want
-              </h3>
-              <p className="mt-2 text-muted-foreground leading-relaxed">
-                Someone says they want "easygoing" but comes alive when
-                intellectually challenged. Someone says they don\u2019t need
-                much attention but lights up when Juno remembers something
-                small. Juno catches these gaps \u2014 dating profiles never
-                could.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold">
-                A premium matchmaker, for everyone
-              </h3>
-              <p className="mt-2 text-muted-foreground leading-relaxed">
-                Human matchmakers charge $5,000+ a month because the model
-                works \u2014 get to know someone deeply, then find their match.
-                Juno does the same thing through AI, at a price anyone can
-                afford.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold">Not just a listener</h3>
-              <p className="mt-2 text-muted-foreground leading-relaxed">
-                Juno has opinions. It pushes back, challenges you, notices when
-                your energy is different. That\u2019s what makes the
-                relationship feel real \u2014 and it\u2019s what produces the
-                signals that make matching actually work.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== STATS ===== */}
-      <section className="py-16 md:py-24 px-6 md:px-10">
-        <div className="max-w-3xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
-            {[
-              {
-                stat: "72%",
-                label: "of teens have used an AI companion",
-                source: "Common Sense Media",
-              },
-              {
-                stat: "93 min",
-                label: "daily AI companion usage",
-                source: "Character.AI avg",
-              },
-              {
-                stat: "79%",
-                label: "of Gen Z burned out on dating apps",
-                source: "Forbes Health",
-              },
-              {
-                stat: "80%",
-                label: "of Gen Z felt lonely this year",
-                source: "GWI, 2024",
-              },
-            ].map(({ stat, label, source }) => (
-              <div key={stat}>
-                <div className="text-2xl md:text-3xl font-bold">{stat}</div>
-                <p className="mt-1 text-sm text-muted-foreground">{label}</p>
-                <p className="mt-0.5 text-xs text-muted-foreground/50">
-                  {source}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FOUNDER NOTE ===== */}
-      <section className="py-16 md:py-24 px-6 md:px-10">
-        <div className="max-w-2xl mx-auto">
-          <div className="border-l-2 border-border/60 pl-6 md:pl-8">
-            <p className="text-muted-foreground leading-relaxed">
-              I grew up between three cultures \u2014 born in the US to Indian
-              parents, raised in Australia. I moved schools constantly and
-              watched how people find their people in unfamiliar places. My
-              closest friends are almost all second-generation immigrants. We
-              found each other without knowing why \u2014 drawn together by
-              patterns we couldn\u2019t have put on a profile.
-            </p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              That\u2019s the insight behind Juno. Compatibility isn\u2019t
-              about what you list on a bio. It\u2019s about patterns that only
-              surface through conversation. I\u2019m building this because
-              I\u2019ve seen it work in real life \u2014 and I think AI can
-              finally make it work at scale.
-            </p>
-            <p className="mt-4 text-sm text-muted-foreground/60">
-              \u2014 Abishek, founder
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* ===== CTA ===== */}
       <section className="py-20 md:py-28 px-6 md:px-10">
         <div className="max-w-2xl mx-auto text-center">
@@ -793,8 +663,8 @@ export default function FrontPage() {
             Come talk to Juno
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            It\u2019s free. It\u2019s on Discord. Just DM the bot and start
-            talking. You\u2019re early \u2014 and you\u2019re helping shape what
+            It’s free. It’s on Discord. Just DM the bot and start
+            talking. You’re early — and you’re helping shape what
             this becomes.
           </p>
 
@@ -840,8 +710,8 @@ export default function FrontPage() {
               <AccordionTrigger>What exactly is Juno?</AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
                 An AI companion on Discord that gets to know you through real
-                conversation \u2014 your values, personality, communication
-                style, what you actually need in a partner \u2014 and uses that
+                conversation — your values, personality, communication
+                style, what you actually need in a partner — and uses that
                 understanding to match you with compatible people. Think of it
                 as a matchmaker you actually talk to, not a form you fill out.
               </AccordionContent>
@@ -852,8 +722,8 @@ export default function FrontPage() {
                 What does "AI companion" mean?
               </AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                Juno is someone you actually have conversations with \u2014
-                about your life, what you\u2019re figuring out, what matters to
+                Juno is someone you actually have conversations with —
+                about your life, what you’re figuring out, what matters to
                 you. It remembers everything, forms opinions about you, and gets
                 to know you over weeks and months. The relationship is what
                 makes the matching work.
@@ -866,7 +736,7 @@ export default function FrontPage() {
                 Through conversation, Juno maps your values, communication
                 style, emotional patterns, and the gap between what you say you
                 want and what you actually respond to. When it knows two people
-                well enough, it introduces them with context \u2014 like a
+                well enough, it introduces them with context — like a
                 friend saying "I think I found someone for you."
               </AccordionContent>
             </AccordionItem>
@@ -874,9 +744,9 @@ export default function FrontPage() {
             <AccordionItem value="ready">
               <AccordionTrigger>Can I get matched right now?</AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                The companion side is live \u2014 you can talk to Juno today.
+                The companion side is live — you can talk to Juno today.
                 The matching engine is coming next. Everything you share with
-                Juno now powers your matches later. You\u2019re getting in
+                Juno now powers your matches later. You’re getting in
                 early.
               </AccordionContent>
             </AccordionItem>
@@ -884,8 +754,8 @@ export default function FrontPage() {
             <AccordionItem value="data">
               <AccordionTrigger>What about my data?</AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                Used for matching only \u2014 never sold, never shared. Each
-                user\u2019s data is completely isolated. Type{" "}
+                Used for matching only — never sold, never shared. Each
+                user’s data is completely isolated. Type{" "}
                 <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
                   /forgetme
                 </code>{" "}
@@ -896,9 +766,9 @@ export default function FrontPage() {
             <AccordionItem value="who">
               <AccordionTrigger>Who is this for?</AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                People 16-25 who want genuine compatibility \u2014 not swiping
-                through strangers based on photos. If you\u2019re open to
-                actually talking and you want someone who gets you, you\u2019re
+                People 16-25 who want genuine compatibility — not swiping
+                through strangers based on photos. If you’re open to
+                actually talking and you want someone who gets you, you’re
                 who we built this for.
               </AccordionContent>
             </AccordionItem>
