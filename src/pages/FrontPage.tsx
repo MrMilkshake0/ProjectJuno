@@ -518,7 +518,7 @@ export default function FrontPage() {
               <br />
               gets to know you.
               <br />
-              <span className="text-muted-foreground">
+              <span className="bg-gradient-to-r from-[#A855F7] to-[#EC4899] bg-clip-text text-transparent">
                 Then finds your match.
               </span>
             </h1>
