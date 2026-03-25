@@ -248,31 +248,31 @@ const conversations: Conversation[] = [
       },
       {
         author: "juno",
-        text: "i think i found someone you'd actually work with",
+        text: "i think i found someone you'd actually click with",
       },
       {
         author: "user",
         head: true,
         timestamp: "Today at 7:04 PM",
-        text: "wait really??",
+        text: "wait seriously??",
       },
       {
         author: "juno",
         head: true,
         timestamp: "Today at 7:04 PM",
-        text: "yeah. she's sharp, a little intense in a way you'd like, and she does this thing where she overthinks everything out loud — kind of like you but she's more aware of it",
+        text: "yeah. he's quiet but not passive — like he'll let you rant for twenty minutes and then say the one thing that actually gets to the point. kind of annoyingly perceptive",
       },
       {
         author: "user",
         head: true,
         timestamp: "Today at 7:05 PM",
-        text: "okay i'm listening",
+        text: "okay i'm very much listening",
       },
       {
         author: "juno",
         head: true,
         timestamp: "Today at 7:05 PM",
-        text: "the thing that sold me — she's not gonna let you get away with \"i'm fine.\" and honestly that's the thing you need most and would never ask for",
+        text: "the thing that sold me — you know how you go quiet when something actually matters to you? he does the opposite. gets more direct. i think you two would balance each other out in a way that's kind of hard to find",
       },
     ],
   },
@@ -524,10 +524,10 @@ export default function FrontPage() {
             </h1>
 
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-lg">
-              Juno is an AI companion you talk to like a friend. Through real
-              conversation it learns your values, how you connect, and what you
-              actually need — not what you think you want. Then it matches you
-              with someone genuinely compatible.
+              Juno is an AI companion you talk to like a friend. It learns
+              who you are through real conversation — how you connect,
+              what you care about, what you actually need in someone.
+              Then it finds a person who genuinely gets you.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -621,23 +621,23 @@ export default function FrontPage() {
             {[
               {
                 num: "01",
-                title: "DM Juno on Discord",
-                body: "No app, no profile, no sign-up wall. Join the server, message the bot, start talking. Juno introduces itself and covers a couple quick things — name, age, what you’re looking for. Takes about two minutes.",
+                title: "Start a conversation",
+                body: "No app to download, no profile to build. Just message Juno on Discord and start talking. A couple quick things first — name, age, what you’re looking for — then you’re in.",
               },
               {
                 num: "02",
-                title: "Just talk about your life",
-                body: "Come back whenever. Juno picks up where you left off. It remembers what you said last week, notices patterns, forms theories about you, and has its own opinions. It feels like texting someone who’s actually paying attention.",
+                title: "Talk about whatever’s on your mind",
+                body: "Come back whenever. Juno picks up where you left off — remembers what you said last week, notices patterns, and has its own opinions. It feels like texting someone who’s actually paying attention.",
               },
               {
                 num: "03",
-                title: "Juno learns who you are — through conversation",
-                body: "Through real conversation over weeks, Juno builds a deep understanding of your values, communication style, emotional patterns, and what you actually respond to vs. what you say you want. No surveys. Just talking.",
+                title: "Juno understands who you really are",
+                body: "Through real conversation over weeks, Juno builds a deep understanding of your values, how you connect, and what you actually respond to — not just what you say you want. No quizzes. No personality tests.",
               },
               {
                 num: "04",
-                title: "Meet someone compatible",
-                body: "When Juno knows two people well enough, it introduces them — with context. Not a profile card. More like a friend reaching out to say \"I think I found someone for you. Here’s why I think you’d work.\"",
+                title: "Meet someone who actually gets you",
+                body: "When Juno knows two people well enough, it introduces them — with context. Not a profile card. More like a friend reaching out to say \"I found someone for you — here’s why I think you’d really work.\"",
               },
             ].map(({ num, title, body }) => (
               <div key={num} className="flex gap-5">
@@ -663,9 +663,8 @@ export default function FrontPage() {
             Come talk to Juno
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            It’s free. It’s on Discord. Just DM the bot and start
-            talking. You’re early — and you’re helping shape what
-            this becomes.
+            It’s free and it’s on Discord. Just start a conversation.
+            You’re early — and you’re helping shape what this becomes.
           </p>
 
           <div className="mt-8">
@@ -709,11 +708,26 @@ export default function FrontPage() {
             <AccordionItem value="what">
               <AccordionTrigger>What exactly is Juno?</AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                An AI companion on Discord that gets to know you through real
-                conversation — your values, personality, communication
-                style, what you actually need in a partner — and uses that
-                understanding to match you with compatible people. Think of it
-                as a matchmaker you actually talk to, not a form you fill out.
+                An AI companion that gets to know you through real
+                conversation — your values, personality, how you
+                connect, what you actually need — and uses that
+                understanding to match you with someone genuinely compatible.
+                Think of it as a matchmaker you actually talk to, not a
+                form you fill out.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="safe">
+              <AccordionTrigger>Is my information safe?</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                Your conversations are yours. Everything you share is used
+                only for matching — never sold, never shared, never visible
+                to other users. Each person’s data is completely isolated.
+                You’re always in control: type{" "}
+                <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
+                  /forgetme
+                </code>{" "}
+                anytime and Juno wipes everything — like you were never there.
               </AccordionContent>
             </AccordionItem>
 
@@ -724,20 +738,21 @@ export default function FrontPage() {
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
                 Juno is someone you actually have conversations with —
                 about your life, what you’re figuring out, what matters to
-                you. It remembers everything, forms opinions about you, and gets
-                to know you over weeks and months. The relationship is what
-                makes the matching work.
+                you. It remembers everything, forms its own opinions about you,
+                and gets to know you over weeks and months. The relationship
+                is what makes the matching work.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="how">
               <AccordionTrigger>How does matching work?</AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                Through conversation, Juno maps your values, communication
-                style, emotional patterns, and the gap between what you say you
-                want and what you actually respond to. When it knows two people
-                well enough, it introduces them with context — like a
-                friend saying "I think I found someone for you."
+                Through conversation, Juno learns your values, how you
+                communicate, your emotional patterns, and the gap between
+                what you say you want and what you actually respond to. When
+                it knows two people well enough, it introduces them with
+                real context — not a profile card, more like a friend
+                saying "I found someone for you — here’s why."
               </AccordionContent>
             </AccordionItem>
 
@@ -745,21 +760,8 @@ export default function FrontPage() {
               <AccordionTrigger>Can I get matched right now?</AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
                 The companion side is live — you can talk to Juno today.
-                The matching engine is coming next. Everything you share with
-                Juno now powers your matches later. You’re getting in
-                early.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="data">
-              <AccordionTrigger>What about my data?</AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                Used for matching only — never sold, never shared. Each
-                user’s data is completely isolated. Type{" "}
-                <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
-                  /forgetme
-                </code>{" "}
-                anytime to wipe everything.
+                The matching engine is coming next. Everything you share now
+                builds toward your future matches. You’re getting in early.
               </AccordionContent>
             </AccordionItem>
 
