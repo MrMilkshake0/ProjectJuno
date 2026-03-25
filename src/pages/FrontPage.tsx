@@ -766,10 +766,11 @@ export default function FrontPage() {
             <AccordionItem value="who">
               <AccordionTrigger>Who is this for?</AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                People 16-25 who want genuine compatibility — not swiping
-                through strangers based on photos. If you’re open to
-                actually talking and you want someone who gets you, you’re
-                who we built this for.
+                Anyone 16+ can talk to Juno — it’s a companion you can
+                have real conversations with. Matchmaking is available
+                once you’re 18. If you’re younger, you can still get to
+                know Juno and build your profile — you’ll be ready to
+                match when the time comes.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
