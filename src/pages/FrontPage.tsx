@@ -25,8 +25,8 @@ function JsonLd<T extends object>({ data }: { data: T }) {
 function JunoAvatar({ size = 40 }: { size?: number }) {
   return (
     <div
-      className="rounded-full bg-[#5865F2] flex items-center justify-center shrink-0"
-      style={{ width: size, height: size }}
+      className="rounded-full flex items-center justify-center shrink-0"
+      style={{ width: size, height: size, background: "linear-gradient(135deg, #A855F7, #EC4899)" }}
     >
       <svg
         viewBox="0 0 512 512"
@@ -368,7 +368,7 @@ function DiscordChat() {
                   <svg
                     viewBox="0 0 512 512"
                     fill="none"
-                    stroke={active ? "#5865F2" : "#949ba4"}
+                    stroke={active ? "#C084FC" : "#949ba4"}
                     strokeWidth="52"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -417,7 +417,7 @@ function DiscordChat() {
                   <span
                     className={`text-sm font-medium ${
                       msg.author === "juno"
-                        ? "text-[#949cf7]"
+                        ? "text-[#D8B4FE]"
                         : "text-[#f0b232]"
                     }`}
                   >
@@ -500,10 +500,10 @@ export default function FrontPage() {
           aria-hidden="true"
         >
           <div
-            className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full opacity-[0.07]"
+            className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full opacity-[0.15] dark:opacity-[0.07]"
             style={{
               background:
-                "radial-gradient(circle, rgba(120,100,255,1) 0%, transparent 70%)",
+                "radial-gradient(circle, rgba(168,85,247,0.8) 0%, rgba(236,72,153,0.4) 40%, transparent 70%)",
             }}
           />
         </div>
@@ -534,7 +534,7 @@ export default function FrontPage() {
               <Button
                 asChild
                 size="lg"
-                className="group text-base px-7 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white"
+                className="group text-base px-7 rounded-xl bg-[#A855F7] hover:bg-[#9333EA] text-white"
               >
                 <a
                   href="https://discord.gg/ZTNRCrVc6j"
@@ -593,9 +593,9 @@ export default function FrontPage() {
               </p>
             </div>
             <div className="bg-background p-6 relative">
-              <div className="absolute inset-0 bg-[#5865F2]/[0.04]" />
+              <div className="absolute inset-0 bg-[#A855F7]/[0.04]" />
               <div className="relative">
-                <p className="text-sm text-[#5865F2] mb-2">Juno</p>
+                <p className="text-sm text-[#9333EA] dark:text-[#C084FC] mb-2">Juno</p>
                 <p className="font-medium">Knows you, then matches you</p>
                 <p className="mt-2 text-sm text-muted-foreground">
                   A companion with purpose. Conversation builds understanding.
@@ -672,7 +672,7 @@ export default function FrontPage() {
             <Button
               asChild
               size="lg"
-              className="group text-base px-8 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white"
+              className="group text-base px-8 rounded-xl bg-[#A855F7] hover:bg-[#9333EA] text-white"
             >
               <a
                 href="https://discord.gg/ZTNRCrVc6j"

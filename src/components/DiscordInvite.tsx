@@ -20,7 +20,7 @@ export default function DiscordInvite({ inviteUrl, serverName }: Props) {
         <Button
           asChild
           size="lg"
-          className="mt-5 w-full bg-[#5865F2] hover:bg-[#4752c4] text-white font-semibold rounded-lg group"
+          className="mt-5 w-full bg-[#A855F7] hover:bg-[#9333EA] text-white font-semibold rounded-lg group"
         >
           <a
             href={inviteUrl}

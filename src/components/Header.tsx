@@ -2,6 +2,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -42,8 +43,8 @@ export default function Header() {
                     to={to}
                     className={`px-3 py-1.5 rounded-md transition-colors ${
                       active
-                        ? "text-foreground bg-white/[0.08]"
-                        : "text-muted-foreground/70 hover:text-foreground hover:bg-white/[0.04]"
+                        ? "text-foreground bg-foreground/[0.08]"
+                        : "text-muted-foreground/70 hover:text-foreground hover:bg-foreground/[0.04]"
                     }`}
                   >
                     {label}
@@ -56,21 +57,24 @@ export default function Header() {
 
         <div className="flex-1" />
 
-        {/* CTA */}
-        <Button
-          asChild
-          size="sm"
-          className="rounded-lg bg-[#5865F2] hover:bg-[#4752c4] text-white text-xs group"
-        >
-          <a
-            href="https://discord.gg/ZTNRCrVc6j"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Theme toggle + CTA */}
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Button
+            asChild
+            size="sm"
+            className="rounded-lg bg-[#A855F7] hover:bg-[#9333EA] text-white text-xs group"
           >
-            Talk to Juno
-            <ArrowRight className="ml-1.5 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-          </a>
-        </Button>
+            <a
+              href="https://discord.gg/ZTNRCrVc6j"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Talk to Juno
+              <ArrowRight className="ml-1.5 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </Button>
+        </div>
       </div>
     </header>
   );

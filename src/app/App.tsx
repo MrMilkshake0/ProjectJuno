@@ -17,7 +17,7 @@ export default function App() {
         content="Juno is an AI companion you talk to like a friend. It learns who you are through real conversation — then matches you with someone genuinely compatible."
       />
       <meta name="robots" content="index,follow" />
-      <meta name="theme-color" content="#1a1625" />
+      <meta name="theme-color" content="#211430" />
       <link rel="icon" href="/favicon.ico" />
       <Canonical href="https://projectjuno.ai/" />
 

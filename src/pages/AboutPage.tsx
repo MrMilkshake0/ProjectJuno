@@ -96,7 +96,7 @@ export default function AboutPage() {
                   <th className="text-left py-3 pr-4 font-medium text-muted-foreground/60 w-[35%]" />
                   <th className="py-3 px-3 font-medium text-muted-foreground/60 text-center">Dating Apps</th>
                   <th className="py-3 px-3 font-medium text-muted-foreground/60 text-center">AI Companions</th>
-                  <th className="py-3 px-3 font-medium text-center text-[#5865F2]">Juno</th>
+                  <th className="py-3 px-3 font-medium text-center text-[#9333EA] dark:text-[#C084FC]">Juno</th>
                 </tr>
               </thead>
               <tbody>
@@ -162,7 +162,7 @@ export default function AboutPage() {
                 <div className="flex flex-col items-center shrink-0 w-16 md:w-20">
                   <div
                     className={`w-3 h-3 rounded-full shrink-0 ${
-                      accent ? "bg-[#5865F2]" : "bg-muted-foreground/30"
+                      accent ? "bg-[#A855F7]" : "bg-muted-foreground/30"
                     }`}
                   />
                   {i < 3 && (
@@ -317,13 +317,13 @@ export default function AboutPage() {
                 key={phase}
                 className={`rounded-xl border p-5 ${
                   active
-                    ? "border-[#5865F2]/30 bg-[#5865F2]/[0.04]"
+                    ? "border-[#A855F7]/30 bg-[#A855F7]/[0.04]"
                     : "border-border/40 bg-card/30"
                 }`}
               >
                 <p
                   className={`text-xs font-medium mb-2 ${
-                    active ? "text-[#5865F2]" : "text-muted-foreground/50"
+                    active ? "text-[#9333EA] dark:text-[#C084FC]" : "text-muted-foreground/50"
                   }`}
                 >
                   {phase}
@@ -381,7 +381,7 @@ export default function AboutPage() {
           <div className="flex flex-wrap gap-3">
             <Button
               asChild
-              className="rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white group"
+              className="rounded-xl bg-[#A855F7] hover:bg-[#9333EA] text-white group"
             >
               <a
                 href="https://discord.gg/ZTNRCrVc6j"
@@ -445,7 +445,7 @@ function CellIcon({
     return (
       <Check
         className={`w-4 h-4 mx-auto ${
-          accent ? "text-[#5865F2]" : "text-green-400/70"
+          accent ? "text-[#9333EA] dark:text-[#C084FC]" : "text-green-400/70"
         }`}
       />
     );
